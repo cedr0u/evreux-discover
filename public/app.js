@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const markers = L.markerClusterGroup();
 
     // Ajout de quelques marqueurs avec des popups (a refaire)
-    markers.addLayer(L.marker([49.024707, 1.168751]).bindPopup('<a href="https://www.gravigny.fr/">Mairie de Gravigny</a>').setIcon(new Leaflet.Icon({iconUrl: 'mairie.png', iconSize: [38, 95]})));
-    markers.addLayer(L.marker([49.023962, 1.169712]).bindPopup('<a href="https://www.gravigny.fr/">Église Saint-Martin</a>').setIcon(new Leaflet.Icon({iconUrl: 'eglise.png', iconSize: [38, 95]})));
-    markers.addLayer(L.marker([49.025049, 1.170836]).bindPopup('<a href="https://www.gravigny.fr/">École primaire Jean Moulin</a>').setIcon(new Leaflet.Icon({iconUrl: 'ecole.png', iconSize: [38, 95]})));
-    markers.addLayer(L.marker([49.026247, 1.170053]).bindPopup('<a href="https://www.gravigny.fr/">Stade municipal</a>').setIcon(new Leaflet.Icon({iconUrl: 'stade.png', iconSize: [38, 95]})));
+    markers.addLayer(L.marker([49.024707, 1.168751]).bindPopup('<a href="https://www.gravigny.fr/">Mairie de Gravigny</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
+    markers.addLayer(L.marker([49.023962, 1.169712]).bindPopup('<a href="https://www.gravigny.fr/">Église Saint-Martin</a>').setIcon(new L.Icon({iconUrl: 'icon/art.png', iconSize: [64, 64]})));
+    markers.addLayer(L.marker([49.025049, 1.170836]).bindPopup('<a href="https://www.gravigny.fr/">École primaire Jean Moulin</a>').setIcon(new L.Icon({iconUrl: 'icon/info.png', iconSize: [64, 64]})));
+    markers.addLayer(L.marker([49.026247, 1.170053]).bindPopup('<a href="https://www.gravigny.fr/">Stade municipal</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [64, 64]})));
 
     // Ajout du groupe de marqueurs à la carte
     map.addLayer(markers);
