@@ -1,9 +1,36 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Création de la carte
-    const map = L.map('map').setView([49.024707, 1.168751], 18);
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'});
+    
+    var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'});
+    
+    var Satellite = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        attribution: 'ArcGIS'});
+    
+    const map = L.map('map', {layers: [Satellite]}).setView([49.01977957460211,1.1655593991722224], 14);
     //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Carte de fond OpenStreetMap
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'ArcGIS'}).addTo(map);
+       
+    var baseMaps = {
+        "Satellite": Satellite,
+        "OpenStreetMap": osm,
+        "<span style='color: red'>OpenStreetMap.HOT</span>": osmHOT,
+    };
+
+    // Création de la couche de superposition
+    var lines = new L.TileLayer("http://gps-{s}.tile.openstreetmap.org/lines/{z}/{x}/{y}.png");
+
+    var overlayMaps = {
+        "Chemins": lines
+    };
+
+    var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
     // Création d'un groupe de marqueurs
     const markers = L.markerClusterGroup();
