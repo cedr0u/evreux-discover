@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    //----------------Fonds de cartes------------------
     // Création de la carte
     var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -20,30 +21,87 @@ document.addEventListener("DOMContentLoaded", function () {
     var baseMaps = {
         "Satellite": Satellite,
         "OpenStreetMap": osm,
-        "<span style='color: red'>OpenStreetMap.HOT</span>": osmHOT,
+        "OpenStreetMap.HOT": osmHOT,
     };
 
     // Création de la couche de superposition
     var lines = new L.TileLayer("http://gps-{s}.tile.openstreetmap.org/lines/{z}/{x}/{y}.png");
 
-    var overlayMaps = {
-        "Chemins": lines
-    };
-
-    var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
-
+    //----------------Markers/Points sur la carte et données d'informations------------------
     // Création d'un groupe de marqueurs
     const markers = L.markerClusterGroup();
 
-    // Ajout de quelques marqueurs avec des popups (a refaire)
-    markers.addLayer(L.marker([49.024707, 1.168751]).bindPopup('<a href="https://www.gravigny.fr/">Mairie de Gravigny</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
-    markers.addLayer(L.marker([49.023962, 1.169712]).bindPopup('<a href="https://www.gravigny.fr/">Église Saint-Martin</a>').setIcon(new L.Icon({iconUrl: 'icon/art.png', iconSize: [64, 64]})));
-    markers.addLayer(L.marker([49.025049, 1.170836]).bindPopup('<a href="https://www.gravigny.fr/">École primaire Jean Moulin</a>').setIcon(new L.Icon({iconUrl: 'icon/info.png', iconSize: [64, 64]})));
-    markers.addLayer(L.marker([49.026247, 1.170053]).bindPopup('<a href="https://www.gravigny.fr/">Stade municipal</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [64, 64]})));
+    // Création/initialisation des tableaux de marqueurs par catégorie
+    var artPlace = [];
+    var eauPlace = [];
+    var historiquePlace = [];
+    var infoPlace = [];
+    var jardinPlace = [];
+    var jumellesPlace = [];
+    var mairiePlace = [];
+    var maisonPlace = [];
+    var sentierPlace = [];
+    var sportPlace = [];
+    var theatrePlace = [];
+    var toilettesPlace = [];
+
+    // Ajout de quelques marqueurs avec des popups et liens
+    toilettesPlace.push(L.marker([49.024707, 1.168751]).bindPopup('<a href="https://www.gravigny.fr/">Mairie de Gravigny</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
+    eauPlace.push(L.marker([49.023962, 1.169712]).bindPopup('<a href="https://www.gravigny.fr/">Église Saint-Martin</a>').setIcon(new L.Icon({iconUrl: 'icon/art.png', iconSize: [64, 64]})));
+    historiquePlace.push(L.marker([49.025049, 1.170836]).bindPopup('<a href="https://www.gravigny.fr/">École primaire Jean Moulin</a>').setIcon(new L.Icon({iconUrl: 'icon/info.png', iconSize: [64, 64]})));
+    infoPlace.push(L.marker([49.026247, 1.170053]).bindPopup('<a href="https://www.gravigny.fr/">Stade municipal</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [64, 64]})));
+
+    // Création des groupes de couches à partir des tableaux de marqueurs (ajouter ici si ajout de markers !)
+    var artPlaceLayer = L.layerGroup(artPlace);
+    var eauPlaceLayer = L.layerGroup(eauPlace);
+    var historiquePlaceLayer = L.layerGroup(historiquePlace);
+    var infoPlaceLayer = L.layerGroup(infoPlace);
+    var jardinPlaceLayer = L.layerGroup(jardinPlace);
+    var jumellesPlaceLayer = L.layerGroup(jumellesPlace);
+    var mairiePlaceLayer = L.layerGroup(mairiePlace);
+    var maisonPlaceLayer = L.layerGroup(maisonPlace);
+    var sentierPlaceLayer = L.layerGroup(sentierPlace);
+    var sportPlaceLayer = L.layerGroup(sportPlace);
+    var theatrePlaceLayer = L.layerGroup(theatrePlace);
+    var toilettesPlaceLayer = L.layerGroup(toilettesPlace);
+
+    // Ajout des groupes de couches à l'objet overlayMaps
+    var overlayMaps = {
+        "<span style='color: blue'>Chemins</span>": lines,
+        "Lieux d'art" : artPlaceLayer,
+        "Points d'eau" : eauPlaceLayer,
+        "Lieux historique" : historiquePlaceLayer,
+        "Lieux d'information" : infoPlaceLayer,
+        "Jardin" : jardinPlaceLayer,
+        "Point de vue" : jumellesPlaceLayer,
+        "Mairie" : mairiePlaceLayer,
+        "Urbex/Désaffecté" : maisonPlaceLayer,
+        "Chemins" : sentierPlaceLayer,
+        "Sports/J.O 2024" : sportPlaceLayer,
+        "Lieux culturels" : theatrePlaceLayer,
+        "Toilettes publiques" : toilettesPlaceLayer,
+    };
+    // Affichage de tout les markers de base
+    map.addLayer(artPlaceLayer);
+    map.addLayer(eauPlaceLayer);
+    map.addLayer(historiquePlaceLayer);
+    map.addLayer(infoPlaceLayer);
+    map.addLayer(jardinPlaceLayer);
+    map.addLayer(jumellesPlaceLayer);
+    map.addLayer(mairiePlaceLayer);
+    map.addLayer(maisonPlaceLayer);
+    map.addLayer(sentierPlaceLayer);
+    map.addLayer(sportPlaceLayer);
+    map.addLayer(theatrePlaceLayer);
+    map.addLayer(toilettesPlaceLayer);
 
     // Ajout du groupe de marqueurs à la carte
     map.addLayer(markers);
 
+    // Ajout du contrôle des couches à la carte
+    var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+    //----------------Systeme de dessin sur la carte------------------
     // Création d'une couche de dessin
     var drawnItems = new L.FeatureGroup();
      map.addLayer(drawnItems);
