@@ -1,0 +1,63 @@
+body {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+}
+
+#message_bienvenue {
+    position: absolute;
+    top: 70px;
+    left: 150px;
+    color: #000;
+    text-align: center;
+    background-color: aqua;
+    background-color: aqua;
+    font-size: xx-large;
+    position: absolute;
+}
+
+#header {
+    position: absolute;
+    top: 0px;
+    left: 300px;
+    right: 300px;
+    background-image: linear-gradient(to right, rgba(173,252,234,1),rgba(192,229,246,1)); 
+    z-index: 1;
+    display: flex; /* Utiliser display flex pour aligner les éléments sur la même ligne*/
+    align-items: center; /* Aligner verticalement au centre*/
+}
+
+#header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#header-column-left,
+#header-column-right {
+
+    flex-grow: 1;
+    justify-content: center;
+
+    display: flex;
+    align-items: center;
+    flex-basis: calc(33.33% - 10px);
+}
+
+#header-column-left {
+    margin-right: 0;
+    margin-left: 100px;
+}
+
+#home_logo,
+#courrier_logo,
+#qui_somme_nous_logo,    
+#map_logo {
+    width: 50px;
+    height: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
