@@ -101,6 +101,29 @@ document.addEventListener("DOMContentLoaded", function () {
     // Ajout du contrôle des couches à la carte
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+    // After you've set up your map and layers, add the modal window by running:
+    var contents = [
+        "<h1>Bonjour et bienvenue !</h1>",
+        "<p></p>",
+        "<h2>Explorez la carte interactive</h2>",
+        "<h3>vous y trouverez:</h3>",
+        "<p>-les lieux incontournables d'Evreux</p>",
+        "<p>-des informations complémentaires et détaillées</p>",
+        "<p>-des recoins/endroit insoupçonné et unique</p>",
+        "<p>-surtout les toilettes et points d'eau gratuits</p>",
+        ].join('');
+    
+    var dialog = L.control.dialog({ size: [ 350, 350 ], minSize: [ 100, 100 ], maxSize: [ 500, 500 ], anchor: [ 250, 250 ], position: "topleft", initOpen: true }).setContent(contents).addTo(map);
+
+    //----------------Plugin fullscreen------------------
+    // or, add to an existing map:
+    map.addControl(new L.Control.Fullscreen({
+        title: {
+            'false': 'Basculer en plein écran',
+            'true': 'Quitter le plein écran'
+        }
+    }));
+
     //----------------Systeme de dessin sur la carte------------------
     // Création d'une couche de dessin
     var drawnItems = new L.FeatureGroup();
@@ -166,8 +189,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // NOTE: as shown in the examples on the Leaflet website, e.target = the layer the user is interacting with
         var layer = e.target;
         var props = layer.feature.properties;
-        var popupContent = 'Mode of travel: ' + props['Travel mode'] + '<br />Range: 0 - ' + props['Range'] + ' ' + props['Range units'] + '<br />Area: ' + props['Area'] + ' ' + props['Area units'] + '<br />Population: ' + props['Population'];
-        if (props.hasOwnProperty('Reach factor')) popupContent += '<br />Reach factor: ' + props['Reach factor'];
+        var popupContent = 'Mode de déplacement: ' + props['Travel mode'] + '<br />Portée: 0 - ' + props['Range'] + ' ' + props['Range units'] + '<br />Zone: ' + props['Area'] + ' ' + props['Area units'] + '<br />Population: ' + props['Population'];
+        if (props.hasOwnProperty('Reach factor')) popupContent += '<br />Facteur de portée: ' + props['Reach factor'];
         layer.bindPopup(popupContent).openPopup();
     }
 
