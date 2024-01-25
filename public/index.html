@@ -24,14 +24,84 @@
     <!-- Inclure les fichiers du plugin Fullscreen en CDN -->
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
-
+    <!-- Inclure les fichiers du plugin Dialog en local -->
     <script src="plugin/Leaflet.Dialog.js"></script>
     <link rel="stylesheet" href="plugin/Leaflet.Dialog.css"/>
-
+    <!-- Inclure les fichiers du plugin SideBar en local -->
+    <script src="plugin/leaflet-sidebar.js"></script>
+    <link rel="stylesheet" href="plugin/leaflet-sidebar.css"/>
     <!-- Inclure le fichier principale -->
     <script src="app.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body, #map {
+            height: 100%;
+            font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+
+        .lorem {
+            font-style: italic;
+            color: #AAA;
+        }
+    </style>
 </head>
 <body>
-    <div id="map" style="height: 100vh;"></div>
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+          <ul role="tablist">
+            <li><a href="#home" role="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#markers" role="tab"><i class="fa fa-map-marker"></i></a></li>
+            <li><a href="#add" role="tab"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#credits" role="tab"><i class="fa fa-info"></i></a></li>
+          </ul>
+        </div>
+    
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+          <div class="sidebar-pane" id="home">
+            <h1 class="sidebar-header">Présentation<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            <p>Ceci est un exemple de menu à gauche avec le plugin leaflet sidebar-v2.</p>
+            <p>Vous pouvez écrire du texte ici pour présenter votre projet ou votre site web.</p>
+          </div>
+    
+          <div class="sidebar-pane" id="markers">
+            <h1 class="sidebar-header">Markers<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            <p>Cette section affiche la liste de tous les markers avec leurs catégories.</p>
+            <ul>
+              <li>Marker 1 (catégorie A)</li>
+              <li>Marker 2 (catégorie B)</li>
+              <li>Marker 3 (catégorie C)</li>
+            </ul>
+          </div>
+    
+          <div class="sidebar-pane" id="add">
+            <h1 class="sidebar-header">Ajouter un marker<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            <p>Cette section vous permet d'ajouter un marker personnalisé sur la carte avec un nom et des coordonnées à sélectionner.</p>
+            <form>
+              <label for="name">Nom:</label>
+              <input type="text" id="name" name="name" placeholder="Entrez un nom" />
+              <label for="lat">Latitude:</label>
+              <input type="number" id="lat" name="lat" placeholder="Entrez une latitude" />
+              <label for="lng">Longitude:</label>
+              <input type="number" id="lng" name="lng" placeholder="Entrez une longitude" />
+              <button type="submit" id="submit">Ajouter</button>
+            </form>
+          </div>
+    
+          <div class="sidebar-pane" id="credits">
+            <h1 class="sidebar-header">Crédits<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            <p>Cette section contient les informations sur les sources et les licences des données et des outils utilisés.</p>
+            <p>Carte: Leaflet</p>
+            <p>Plugin: sidebar-v2</p>
+            <p>Données: OpenStreetMap</p>
+          </div>
+        </div>
+      </div>
+      <div id="map" class="sidebar-map" style="height: 100vh;"></div>
 </body>
 </html>

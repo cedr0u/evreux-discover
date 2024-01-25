@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Ajout du contrôle des couches à la carte
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+    //----------------Plugin boxmessage------------------
     // After you've set up your map and layers, add the modal window by running:
     var contents = [
         "<h1>Bonjour et bienvenue !</h1>",
@@ -238,4 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
     map.on('reachability:no_data', function () {
         alert('Unfortunately no data was received from the API.\n');
     });
+
+    //----------------Plugin sidebar------------------
+    var sidebar = L.control.sidebar('sidebar', {position: 'left'}).addTo(map);
 });
