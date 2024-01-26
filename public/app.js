@@ -4,11 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'});
-    
-    var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'});
-    
+
     var Satellite = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 19,
         attribution: 'ArcGIS'});
@@ -21,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var baseMaps = {
         "Satellite": Satellite,
         "OpenStreetMap": osm,
-        "OpenStreetMap.HOT": osmHOT,
     };
 
     // Création de la couche de superposition
@@ -46,10 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var toilettesPlace = [];
 
     // Ajout de quelques marqueurs avec des popups et liens
-    toilettesPlace.push(L.marker([49.024707, 1.168751]).bindPopup('<a href="https://www.gravigny.fr/">Mairie de Gravigny</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
-    eauPlace.push(L.marker([49.023962, 1.169712]).bindPopup('<a href="https://www.gravigny.fr/">Église Saint-Martin</a>').setIcon(new L.Icon({iconUrl: 'icon/art.png', iconSize: [64, 64]})));
-    historiquePlace.push(L.marker([49.025049, 1.170836]).bindPopup('<a href="https://www.gravigny.fr/">École primaire Jean Moulin</a>').setIcon(new L.Icon({iconUrl: 'icon/info.png', iconSize: [64, 64]})));
-    infoPlace.push(L.marker([49.026247, 1.170053]).bindPopup('<a href="https://www.gravigny.fr/">Stade municipal</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [64, 64]})));
+    toilettesPlace.push(L.marker([49.024707, 1.168751], {dataName: 'Mairie de Gravigny'}).bindPopup('<a href="https://www.gravigny.fr/">Mairie de Gravigny</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
+    eauPlace.push(L.marker([49.023962, 1.169712], {dataName: 'Église Saint-Martin'}).bindPopup('<a href="https://www.gravigny.fr/">Église Saint-Martin</a>').setIcon(new L.Icon({iconUrl: 'icon/art.png', iconSize: [64, 64]})));
+    historiquePlace.push(L.marker([49.025049, 1.170836], {dataName: 'École primaire Jean Moulin'}).bindPopup('<a href="https://www.gravigny.fr/">École primaire Jean Moulin</a>').setIcon(new L.Icon({iconUrl: 'icon/info.png', iconSize: [64, 64]})));
+    infoPlace.push(L.marker([49.026247, 1.170053], {dataName: 'Stade municipal'}).bindPopup('<a href="https://www.gravigny.fr/">Stade municipal</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [64, 64]})));
 
     // Création des groupes de couches à partir des tableaux de marqueurs (ajouter ici si ajout de markers !)
     var artPlaceLayer = L.layerGroup(artPlace);
@@ -242,4 +237,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //----------------Plugin sidebar------------------
     var sidebar = L.control.sidebar('sidebar', {position: 'left'}).addTo(map);
+
+    // Define the markers by category
+    const markersByCategory = {
+        "Lieux d'art": artPlaceLayer,
+        "Points d'eau": eauPlaceLayer,
+        "Lieux historique": historiquePlaceLayer,
+        "Lieux d'information": infoPlaceLayer,
+        "Jardin": jardinPlaceLayer,
+        "Point de vue": jumellesPlaceLayer,
+        "Mairie": mairiePlaceLayer,
+        "Urbex/Désaffecté": maisonPlaceLayer,
+        "Chemins": sentierPlaceLayer,
+        "Sports/J.O 2024": sportPlaceLayer,
+        "Lieux culturels": theatrePlaceLayer,
+        "Toilettes publiques": toilettesPlaceLayer,
+    };
+    
+    // Create the markers menu
+    createMarkerMenu(markersByCategory);
+
+    function createMarkerMenu(markersByCategory) {
+        const markerMenu = document.getElementById('markers');
+        markerMenu.innerHTML = '';
+        for (const category in markersByCategory) {
+            if (markersByCategory.hasOwnProperty(category)) {
+                const categoryLink = document.createElement('a');
+                categoryLink.href = '#';
+                categoryLink.textContent = category;
+                categoryLink.addEventListener('click', function () {
+                    map.addLayer(markersByCategory[category]);
+                    map.setView(markersByCategory[category].getLayers()[0].getLatLng(), 15);
+                });
+                markerMenu.appendChild(categoryLink);
+                markerMenu.appendChild(document.createElement('br')); // Ajout d'un saut de ligne après chaque catégorie
+                
+                const nbMarkers = markersByCategory[category].getLayers().length;
+                categoryLink.dataset.nbMarkers = nbMarkers;
+                const span = document.createElement('span');
+                span.textContent = ` (${nbMarkers})`;
+                categoryLink.appendChild(span);
+    
+                // Ajout de la liste des marqueurs
+                const markersList = document.createElement('ul');
+                for (const marker of markersByCategory[category].getLayers()){
+                    const listItem = document.createElement('li')
+                    listItem.textContent = marker.options.dataName;
+                    listItem.addEventListener('click', function () {
+                        map.setView(marker.getLatLng(), 15);
+                    });
+                    markersList.appendChild(listItem);
+                }
+                markerMenu.appendChild(markersList);
+            }
+        }
+    }
 });
