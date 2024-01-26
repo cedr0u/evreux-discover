@@ -1,5 +1,5 @@
 html {
-  background-color: white;
+  background-color: #e0ebc4;
 }
 
 body {
@@ -8,13 +8,13 @@ body {
   background-color: #9e9fa9;
 }
 
-.zone_texte_1 {
+.texte_bienvenue {
   position: absolute;
   top: 200px;
   right: 100px;
   width: 650px;
-  background-color: rgb(43, 27, 82);
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .zone_texte_2{
@@ -55,7 +55,10 @@ body {
   margin-right: 0;
   margin-left: 100px;
 }
-
+#header-colum-right{
+  margin-left: 0;
+  margin-right: 100px;
+}
 #home_logo,
 #courrier_logo,
 #qui_somme_nous_logo,
