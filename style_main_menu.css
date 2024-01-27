@@ -1,5 +1,5 @@
 html {
-  background-color: #e0ebc4;
+  background-color: #999999;
 }
 
 body {
@@ -17,16 +17,10 @@ body {
   color: black;
 }
 
-.zone_texte_2{
-  background-color: #cc6fb2;
-  position: absolute;
-  top: 800px;
-  left: 25px;
-  width: 700px;
-}
 
 .header {
-  position: absolute;
+  position: fixed;
+  height: 80px;
   top: 0px;
   left: 10%;
   right: 10%;
@@ -36,10 +30,26 @@ body {
   display: flex;
 }
 
+#logo_evreux-discover {
+  position: absolute;
+  left: 10px;
+  height: 90px;
+}
+#description-logo{
+  position: absolute;
+  left: 90px;
+  top: 25px;
+
+}
+#header.a{
+  color: white;
+  text-decoration: none;
+}
 #header-content {
   display: flex;
   flex-direction: row;
   align-items: center;
+
 }
 
 #header-column-left,
@@ -72,21 +82,6 @@ body {
   justify-content: center;
 }
 
-#angle-right {
-  height: 25px;
-  width: auto;
-  position: absolute;
-  top: 50%;
-  left: 95%;
-}
-
-#angle-left {
-  height: 25px;
-  width: auto;
-  position: absolute;
-  top: 50%;
-  right: 95%;
-}
 
 .slider {
   width: 1120px;
@@ -117,7 +112,7 @@ body {
 .slider-nav {
   position: absolute;
   width: 100%;
-  bottom: -30px;
+  bottom: 20px;
   margin-top: 10px;
   text-align: center;
 }
@@ -125,8 +120,8 @@ body {
 .slider-nav a {
   display: inline-block;
   background-color: #adafbc;
-  width: 21px;
-  height: 21px;
+  width:30px;
+  height: 30px;
   margin: 0 6px;
 }
 
@@ -143,16 +138,59 @@ body {
   -webkit-transform: translateX(-2240px);
   transform: translateX(-2240px);
 }
-/*
-#img4:target .slider-content {
-  -webkit-transform: translateX(-3360px);
-  transform: translateX(-3360px);
-}
 
-#img5:target .slider-content {
-  -webkit-transform: translateX(-4480px);
-  transform: translateX(-4480px);
-}
+/* zoom des images */
+/* balises à utiliser pour zommer une image : 
+  <div class="zoom d-flex justify-content-center">
+    <div class="p-2 m-2"><img src="image1.jpg"></div>
+  </div>
 */
+.zoom img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.zoom :hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+#welcome_gif {
+  position: absolute;
+  top: 0px;
+  right: 25px;
+  height: 150px;
+  width: auto;
+}
+/**//**//**//**//**//**//* corp de la page *//**//**//**/
 
 
+.notre_project {
+  position: absolute;
+  top: 800px;
+  left: 5%;
+  width: 90%;
+  height: 400px;
+  background-color: #3498db; /* Couleur de fond */
+  border-radius: 10px; 
+
+
+  /*
+  background-color: #333333;
+  position: absolute;
+  top: 800px;
+  right: 50px;
+  left: 50px;
+  width: 80%;
+  */
+}
+
+.notre_project.texte{
+  color: white;
+}
+
+#gif1{
+  position: absolute;
+  top: 20%;
+  right: 10px;
+}
