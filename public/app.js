@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
         maxZoom: 19,
         attribution: 'ArcGIS'});
     
+    var otp = L.tileLayer("https://" + ["a", "b", "c"][new Date() % 3] + ".tile.opentopomap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        maxNativeZoom: 17,
+        attribution: 'Kartendaten: © OpenStreetMap-Mitwirkende, SRTM Kartendarstellung: © OpenTopoMap (CC-BY-SA)'});
+    
     const map = L.map('map', {layers: [Satellite]}).setView([49.01977957460211,1.1655593991722224], 14);
     //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Carte de fond OpenStreetMap
     L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -17,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var baseMaps = {
         "Satellite": Satellite,
         "OpenStreetMap": osm,
+        "OpenTopoMap": otp,
     };
 
     // Création de la couche de superposition
