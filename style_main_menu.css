@@ -1,196 +1,218 @@
 html {
-  background-color: #999999;
-}
-
-body {
-  color: black;
-  font-family: 'Times New Roman', Times, serif;
-  background-color: #9e9fa9;
-}
-
-.texte_bienvenue {
-  position: absolute;
-  top: 200px;
-  right: 100px;
-  width: 650px;
-  background-color: white;
-  color: black;
-}
-
-
-.header {
-  position: fixed;
-  height: 80px;
-  top: 0px;
-  left: 10%;
-  right: 10%;
-  width: 70%;
-  background-image: linear-gradient(to right, rgba(173, 252, 234, 1), rgba(192, 229, 246, 1));
-  z-index: 1;
-  display: flex;
-}
-
-#logo_evreux-discover {
-  position: absolute;
-  left: 10px;
-  height: 90px;
-}
-#description-logo{
-  position: absolute;
-  left: 90px;
-  top: 25px;
-
-}
-#header.a{
-  color: white;
-  text-decoration: none;
-}
-#header-content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-}
-
-#header-column-left,
-#header-column-right {
-  flex-grow: 1;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-basis: calc(33.33% - 10px);
-}
-
-#header-column-left {
-  margin-right: 0;
-  margin-left: 100px;
-}
-#header-colum-right{
-  margin-left: 0;
-  margin-right: 100px;
-}
-#home_logo,
-#courrier_logo,
-#qui_somme_nous_logo,
-#map_logo {
-  width: 50px;
-  height: auto;
-  margin-left: 50px;
-  margin-right: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.slider {
-  width: 1120px;
-  margin: 42px auto;
-  position: absolute;
-  left: 10px;
-  top: 50px;
-}
-
-.slider-viewport {
-  width: 1120px;
-  height: 600px;
-  overflow: hidden;
-}
-
-.slider-content {
-  display: grid;
-  grid-auto-flow: column;
-  -webkit-transition: 1s all;
-  transition: 1s linear ;
-}
-
-.slider-content img {
-  width: 1120px;
-  height: 600px;
-}
-
-.slider-nav {
-  position: absolute;
-  width: 100%;
-  bottom: 20px;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.slider-nav a {
-  display: inline-block;
-  background-color: #adafbc;
-  width:30px;
-  height: 30px;
-  margin: 0 6px;
-}
-
-.slider-nav a:hover {
-  background-color: #fff;
-}
-
-#img2:target .slider-content {
-  -webkit-transform: translateX(-1120px);
-  transform: translateX(-1120px);
-}
-
-#img3:target .slider-content {
-  -webkit-transform: translateX(-2240px);
-  transform: translateX(-2240px);
-}
-
-/* zoom des images */
-/* balises à utiliser pour zommer une image : 
-  <div class="zoom d-flex justify-content-center">
-    <div class="p-2 m-2"><img src="image1.jpg"></div>
-  </div>
-*/
-.zoom img {
-	-webkit-transform: scale(1);
-	transform: scale(1);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-}
-.zoom :hover img {
-	-webkit-transform: scale(1.3);
-	transform: scale(1.3);
-}
-#welcome_gif {
-  position: absolute;
-  top: 0px;
-  right: 25px;
-  height: 150px;
-  width: auto;
-}
-/**//**//**//**//**//**//* corp de la page *//**//**//**/
-
-
-.notre_project {
-  position: absolute;
-  top: 800px;
-  left: 5%;
-  width: 90%;
-  height: 400px;
-  background-color: #3498db; /* Couleur de fond */
-  border-radius: 10px; 
-
-
-  /*
-  background-color: #333333;
-  position: absolute;
-  top: 800px;
-  right: 50px;
-  left: 50px;
-  width: 80%;
+    background-color: #999999;
+  }
+  
+  body {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #9e9fa9;
+  }
+  
+  .texte_bienvenue {
+    position: absolute;
+    top: 200px;
+    right: 50px;
+    width: 650px;
+    background-color: white;
+    color: black;
+    
+  }
+  
+  /* HEADER */
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: calc(25% - 10px);
+    margin: 10%; /* Ajoute une marge de 10 pixels autour de l'élément */
+    height: 90%;
+    padding: 0;
+  }
+  .img-header{
+    height: 60px;
+    width: auto;
+  
+  }
+  .header-p{
+    margin: 60px;
+  }
+  .header-logo {
+    width: 50px;
+    height: auto;
+  }
+  .header-p{
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+  }
+  .img-header{
+    height: 60px;
+    width: auto;
+  }
+  .header {
+    position: fixed;
+    height: 100px;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to right, rgba(173, 252, 234, 1), rgba(192, 229, 246, 1));
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 100px;
+  }
+  
+  
+  .header a,
+  .header a:hover,
+  .header a:visited{
+    color:rgb(0, 0, 0) ;
+  }
+  
+  /* SLIDER */
+  
+  .slider {
+    width: 1120px;
+    margin: 42px auto;
+    position: absolute;
+    left: 10px;
+    top: 50px;
+  }
+  
+  .slider-viewport {
+    width: 1120px;
+    height: 600px;
+    overflow: hidden;
+  }
+  
+  
+  .slider-content {
+    display: grid;
+    grid-auto-flow: column;
+    -webkit-transition: 1s all;
+    transition: 1s linear ;
+  }
+  
+  .slider-content img {
+    width: 1120px;
+    height: 600px;
+  }
+  
+  .slider-nav {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .slider-nav a {
+    display: inline-block;
+    background-color: #adafbc;
+    width:30px;
+    height: 30px;
+    margin: 0 6px;
+  }
+  
+  .slider-nav a:hover {
+    background-color: #fff;
+  }
+  
+  #img2:target .slider-content {
+    -webkit-transform: translateX(-1120px);
+    transform: translateX(-1120px);
+  }
+  
+  #img3:target .slider-content {
+    -webkit-transform: translateX(-2240px);
+    transform: translateX(-2240px);
+  }
+  
+  /* zoom des images */
+  /* balises à utiliser pour zommer une image : 
+    <div class="zoom d-flex justify-content-center">
+      <div class="p-2 m-2"><img src="image1.jpg"></div>
+    </div>
   */
-}
-
-.notre_project.texte{
+  .zoom img {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-transition: .3s ease-in-out;
+      transition: .3s ease-in-out;
+  }
+  .zoom :hover img {
+      -webkit-transform: scale(1.3);
+      transform: scale(1.3);
+  }
+  #welcome_gif {
+    position: absolute;
+    top: 0px;
+    right: 25px;
+    height: 150px;
+    width: auto;
+  }
+  /**//**//**//**//**//**//* corp de la page *//**//**//**/
+  
+  .corp-page {
+    background-color: #ffffff;
+    position: absolute;
+    top: 750px;
+    width: 95%;
+    height: 2500px;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  
+  }
+  
+  .notre_project {
+    position: absolute;
+    top: 10px;
+    left: 5%;
+    width: 90%;
+    height: 700px;
+    background-color: #3498db; /* Couleur de fond */
+    border-radius: 10px; 
+    color: white;
+  }
+  
+  .notre_project #gif1{
+    position: absolute;
+    top: 20%;
+    right: 10px;
+  
+  }
+  
+  .qui-sommes-nous{
+    position: absolute;
+    top: 750px;
+    right: 5%;
+    width: 90%;
+    background-color: rgb(255, 166, 0);
+    height: 700px;
+    border-radius: 10px; 
+    color: rgb(0, 0, 0);
+  }
+  
+  .nous-contacter {
+    position: absolute;
+    top: 1500px;
+    right: 5%;
+    width: 90%;
+    background-color: rgb(118, 216, 238);
+    height: 700px;
+    border-radius: 10px; 
+    color: rgb(0, 0, 0);
+  }
+  
+  /* FOOTER */
+  
+.footer {
+  background-color: black;
+  width: 100%;
+  height: 150px;
   color: white;
-}
-
-#gif1{
   position: absolute;
-  top: 20%;
-  right: 10px;
+  top: 3200px;
+
 }
