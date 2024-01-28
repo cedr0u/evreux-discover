@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="icon" href="favicon.ico" />
-    <title>Evreux-map</title>
+    <title>Evreux-discover</title>
     <!-- Inclure les fichiers de Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -66,8 +66,14 @@
         <div class="sidebar-content">
           <div class="sidebar-pane" id="home">
             <h1 class="sidebar-header">Présentation<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            <p>Ceci est un exemple de menu à gauche avec le plugin leaflet sidebar-v2.</p>
-            <p>Vous pouvez écrire du texte ici pour présenter votre projet ou votre site web.</p>
+            <h1>Bonjour et bienvenue !</h1>
+            <p></p>
+            <h2>Explorez la carte interactive</h2>
+            <h3>vous y trouverez:</h3>
+            <p>-les lieux incontournables d'Evreux</p>
+            <p>-des informations complémentaires et détaillées</p>
+            <p>-des recoins/endroit insoupçonné et unique</p>
+            <p>-surtout les toilettes et points d'eau gratuits</p>",
           </div>
     
           <div class="sidebar-pane" id="markers"></div>
@@ -88,10 +94,64 @@
     
           <div class="sidebar-pane" id="credits">
             <h1 class="sidebar-header">Crédits<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            <p>Cette section contient les informations sur les sources et les licences des données et des outils utilisés.</p>
-            <p>Carte: Leaflet</p>
-            <p>Plugin: sidebar-v2</p>
-            <p>Données: OpenStreetMap</p>
+            <h2 style="text-align: center;"><strong>Projet de NSI premi&egrave;re</strong></h2>
+            <h2 style="text-align: center;"><em><strong>~-~</strong></em><em><strong>Contributeurs</strong></em><em><strong>~-~</strong></em></h2>
+            <h3><strong>Programmation:</strong></h3>
+            <ul>
+            <li><strong>A. C&eacute;dric / </strong><em>&nbsp;carte interactive - int&eacute;grations des plugins - sidebar</em></li>
+            <li><strong>C. Thomas /</strong> <em>page d'accueille - pages explicatives - (recherches)</em></li>
+            <li><strong>R. Julien / </strong><em>pages explicatives</em><strong> - </strong><em>(recherches)</em></li>
+            </ul>
+            <h3><strong>Recherches:</strong></h3>
+            <ul>
+            <li><strong>D. Marin / </strong><em>(recherches)</em></li>
+            <li><strong>T. Evan / </strong><em>(recherches)</em></li>
+            <li><strong>T. Louis / </strong><em>(recherches)</em></li>
+            </ul>
+            <h3><strong>Remerciements:</strong></h3>
+            <ul>
+            <li><strong>M Betton (professeurs d'Histoire) / </strong><em>informations historique</em></li>
+            <li><strong>M Maillard (professeurs de NSI) /&nbsp;</strong><em>inspiration de l'id&eacute;e d'une map du lyc&eacute;e</em></li>
+            </ul>
+            <h3><strong>Soutiens morals:</strong></h3>
+            <ul>
+            <li><strong>E. Victor /</strong><em> toujours une pointe d'humour quand on code</em></li>
+            </ul>
+            <p><strong>Musiques /&nbsp;</strong><em>Spotify, toujours de bonnes playlists pour restez <span style="text-decoration: line-through;">&eacute;veill&eacute;</span> <span style="text-decoration: underline;">zen</span></em></p>
+            <h2 style="text-align: center;"><em><strong>~-~Sources~-~</strong></em></h2>
+            <h3><strong>Icons:</strong></h3>
+            <ul>
+            <li><a title="exhibition icons" href="https://www.flaticon.com/free-icons/exhibition">Exhibition icons created by Freepik - Flaticon</a></li>
+            <li><a title="save water icons" href="https://www.flaticon.com/free-icons/save-water">Save water icons created by Freepik - Flaticon</a></li>
+            <li><a title="monument icons" href="https://www.flaticon.com/free-icons/monument">Monument icons created by TravisAvery - Flaticon</a></li>
+            <li><a title="garden icons" href="https://www.flaticon.com/free-icons/garden">Garden icons created by Freepik - Flaticon</a></li>
+            <li><a title="binoculars icons" href="https://www.flaticon.com/free-icons/binoculars">Binoculars icons created by smashingstocks - Flaticon</a></li>
+            <li><a title="town hall icons" href="https://www.flaticon.com/free-icons/town-hall">Town hall icons created by Freepik - Flaticon</a></li>
+            <li><a href="https://www.freepik.com/icon/house_9306128">House icon by Freepik</a></li>
+            <li><a title="trilha &iacute;cones" href="https://www.flaticon.com/br/icones-gratis/trilha">Trail icons created by Freepik - Flaticon</a></li>
+            <li><a title="sport icons" href="https://www.flaticon.com/free-icons/sport">Sport icons created by Freepik - Flaticon</a></li>
+            <li><a href="https://www.freepik.com/icon/theater_2185576">Theater icon by Freepik</a></li>
+            <li><a title="place icons" href="https://www.flaticon.com/free-icons/place">Place icons created by Freepik - Flaticon</a></li>
+            </ul>
+            <h3><strong>Plugins:</strong></h3>
+            <ul>
+            <li>Leaflet.Dialog</li>
+            <li>leaflet-sidebar</li>
+            <li>leaflet.fullscreen</li>
+            <li>leaflet.reachability</li>
+            <li>leaflet.draw</li>
+            <li>leaflet-locatecontrol</li>
+            <li>leaflet.markercluster</li>
+            </ul>
+            <h3><strong>Base:</strong></h3>
+            <ul>
+            <li>leaflet.js 1.9.4</li>
+            <li>Express.js</li>
+            </ul>
+            <h3><strong>Font:</strong></h3>
+            <ul>
+            <li>font-awesome 4.7.0</li>
+            </ul>
           </div>
         </div>
       </div>

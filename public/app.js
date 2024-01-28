@@ -98,18 +98,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //----------------Plugin boxmessage------------------
     // After you've set up your map and layers, add the modal window by running:
-    var contents = [
-        "<h1>Bonjour et bienvenue !</h1>",
-        "<p></p>",
-        "<h2>Explorez la carte interactive</h2>",
-        "<h3>vous y trouverez:</h3>",
-        "<p>-les lieux incontournables d'Evreux</p>",
-        "<p>-des informations complémentaires et détaillées</p>",
-        "<p>-des recoins/endroit insoupçonné et unique</p>",
-        "<p>-surtout les toilettes et points d'eau gratuits</p>",
-        ].join('');
+    //var contents = [
+        //"<h1>Bonjour et bienvenue !</h1>",
+        //"<p></p>",
+        //"<h2>Explorez la carte interactive</h2>",
+        //"<h3>vous y trouverez:</h3>",
+        //"<p>-les lieux incontournables d'Evreux</p>",
+        //"<p>-des informations complémentaires et détaillées</p>",
+        //"<p>-des recoins/endroit insoupçonné et unique</p>",
+        //"<p>-surtout les toilettes et points d'eau gratuits</p>",
+        //].join('');
     
-    var dialog = L.control.dialog({ size: [ 350, 350 ], minSize: [ 100, 100 ], maxSize: [ 500, 500 ], anchor: [ 250, 250 ], position: "topleft", initOpen: true }).setContent(contents).addTo(map);
+    //var dialog = L.control.dialog({ size: [ 350, 350 ], minSize: [ 100, 100 ], maxSize: [ 500, 500 ], anchor: [ 250, 250 ], position: "topleft", initOpen: true }).setContent(contents).addTo(map);
 
     //----------------Plugin fullscreen------------------
     // or, add to an existing map:
