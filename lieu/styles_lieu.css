@@ -26,22 +26,21 @@ body {
     transform: scale(1.2);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   }
-  
-.fleche:hover h1#retour,
-.fleche:focus h1#retour {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
-  
-.fleche:active h1#retour,
-.fleche:focus h1#retour {
-    transform: scale(1.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  }
 
 .up_bar h1#retour{
     display: inline-block;
     margin-left: 20px;
     margin-top: 1%;
     text-align: center;
+    color: #000000;
+}
+
+h1#retour:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1#retour:active {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
