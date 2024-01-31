@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         maxZoom: 19,
         attribution: 'ArcGIS'});
     
-    var otp = L.tileLayer("https://" + ["a", "b", "c"][new Date() % 3] + ".tile.opentopomap.org/{z}/{x}/{y}.png", {
+    var otp = L.tileLayer("https://tile.opentopomap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         maxNativeZoom: 17,
         attribution: 'Kartendaten: © OpenStreetMap-Mitwirkende, SRTM Kartendarstellung: © OpenTopoMap (CC-BY-SA)'});
@@ -52,6 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
     eauPlace.push(L.marker([49.023962, 1.169712], {dataName: 'Église Saint-Martin'}).bindPopup('<a href="https://www.gravigny.fr/">Église Saint-Martin</a>').setIcon(new L.Icon({iconUrl: 'icon/art.png', iconSize: [64, 64]})));
     historiquePlace.push(L.marker([49.025049, 1.170836], {dataName: 'École primaire Jean Moulin'}).bindPopup('<a href="https://www.gravigny.fr/">École primaire Jean Moulin</a>').setIcon(new L.Icon({iconUrl: 'icon/info.png', iconSize: [64, 64]})));
     infoPlace.push(L.marker([49.026247, 1.170053], {dataName: 'Stade municipal'}).bindPopup('<a href="https://www.gravigny.fr/">Stade municipal</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [64, 64]})));
+
+    // geojson
+    sportPlace.push(L.geoJSON.ajax("geojson/parcours-sportifs-saint-michel.geojson"));
 
     // Création des groupes de couches à partir des tableaux de marqueurs (ajouter ici si ajout de markers !)
     var artPlaceLayer = L.layerGroup(artPlace);
@@ -273,37 +276,42 @@ document.addEventListener("DOMContentLoaded", function () {
         const markerMenu = document.getElementById('markers');
         markerMenu.innerHTML = '';
         for (const category in markersByCategory) {
-            if (markersByCategory.hasOwnProperty(category)) {
-                const categoryLink = document.createElement('a');
-                categoryLink.href = '#';
-                categoryLink.textContent = category;
-                categoryLink.addEventListener('click', function () {
-                    map.addLayer(markersByCategory[category]);
-                    map.setView(markersByCategory[category].getLayers()[0].getLatLng(), 15);
-                });
-                markerMenu.appendChild(categoryLink);
-                markerMenu.appendChild(document.createElement('br')); // Ajout d'un saut de ligne après chaque catégorie
-                
-                const nbMarkers = markersByCategory[category].getLayers().length;
-                categoryLink.dataset.nbMarkers = nbMarkers;
-                const span = document.createElement('span');
-                span.textContent = ` (${nbMarkers})`;
-                categoryLink.appendChild(span);
-    
-                // Ajout de la liste des marqueurs
-                const markersList = document.createElement('ul');
-                for (const marker of markersByCategory[category].getLayers()){
-                    const listItem = document.createElement('li')
-                    listItem.textContent = marker.options.dataName;
-                    listItem.addEventListener('click', function () {
-                        map.setView(marker.getLatLng(), 15);
-                    });
-                    markersList.appendChild(listItem);
-                }
-                markerMenu.appendChild(markersList);
+          if (markersByCategory.hasOwnProperty(category)) {
+            const categoryDiv = document.createElement('details');
+            categoryDiv.innerHTML = `<summary>${category}</summary>`;
+            categoryDiv.classList.add('category');
+            markerMenu.appendChild(categoryDiv);
+      
+            const categoryLink = categoryDiv.querySelector('summary');
+            categoryLink.href = '#';
+            categoryLink.addEventListener('click', function () {
+              map.addLayer(markersByCategory[category]);
+            });
+      
+            const nbMarkers = markersByCategory[category].getLayers().length;
+            categoryLink.dataset.nbMarkers = nbMarkers;
+            const span = document.createElement('span');
+            span.classList.add('category-count');
+            span.textContent = ` (${nbMarkers})`;
+            categoryLink.appendChild(span);
+      
+            // Ajout de la liste des marqueurs
+            const markersList = document.createElement('ul');
+            markersList.classList.add('markers-list');
+            for (const marker of markersByCategory[category].getLayers()) {
+              const listItem = document.createElement('li');
+              listItem.classList.add('marker-item');
+              listItem.textContent = marker.options.dataName;
+              listItem.addEventListener('click', function () {
+                map.setView(marker.getLatLng(), 15);
+              });
+              markersList.appendChild(listItem);
             }
+            categoryDiv.appendChild(markersList);
+          }
         }
-    }
+      }
+
     //~~~Menu ajouts markers~~~
     // Add an event listener to the form
     document.getElementById('addMarkerForm').addEventListener('submit', function(event) {
