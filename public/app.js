@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Ajout de quelques marqueurs avec des popups et liens
     // -markers de Lieux d'art-
-    // -markers de Lieux d'art-
+    // -markers de Points d'eau-
     // -markers de Lieux historique-
     // -markers de Lieux d'information-
     // -markers de Jardin-
@@ -63,11 +63,16 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // -markers de Urbex/Désaffecté-
     maisonPlace.push(L.marker([49.02443370332018, 1.1659685167606004], {dataName: 'Usine Nétreville Philips'}).bindPopup('<a href="#">Urbex usine Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [64, 64]})));
-    maisonPlace.push(L.marker([49.015833797486955, 1.1308112571000448], {dataName: 'Les 3 immeubles abandonnées'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Les 3 immeubles abandonnées</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
-    //usine de navarre
-    //ancienne hopital d'evreux
+    maisonPlace.push(L.marker([49.016118235216226, 1.1209848510133373], {dataName: 'Usine de Navarre'}).bindPopup('<a href="#">Usine de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [64, 64]})));
+    maisonPlace.push(L.marker([49.015833797486955, 1.1308112571000448], {dataName: 'Les 3 immeubles abandonnées'}).bindPopup('<a href="#">Les 3 immeubles abandonnées</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [64, 64]})));
+    maisonPlace.push(L.marker([49.03955410474035, 1.1249129025005469], {dataName: 'Cité Lafayette (américaine)'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Cité Lafayette (américaine)</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [64, 64]})));
+        //ancienne hopital d'evreux
+        //ancienne hopital americain d'evreux
 
     // -markers de Chemins-
+    sentierPlace.push(L.geoJSON.ajax("geojson/parcours-sportifs-saint-michel.geojson", {dataName: '[chemin] Parcour sportif st Michel'}));
+    sentierPlace.push(L.marker([49.0358057661843, 1.126108168140265], {dataName: 'Début du Parcour sportif st Michel'}).bindPopup('<a href="#">Début du Parcour sportif st Michel</a>').setIcon(new L.Icon({iconUrl: 'icon/sentier.png', iconSize: [64, 64]})));
+
     // -markers de Sports/J.O 2024-
     sportPlace.push(L.marker([49.017185832405126, 1.126595959278061], {dataName: 'Mouv\'roc - sport plein air'}).bindPopup('<a href="#">Mouv\'roc - sport plein air</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
     sportPlace.push(L.marker([49.02709014691586, 1.1703939008949693], {dataName: 'Parc Street workout - musculation en extérieur'}).bindPopup('<a href="#">Parc Street workout - musculation en extérieur</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
@@ -101,10 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // -markers de Toilettes publiques-
     // -markers de Markers personnels-
 
-    // geojson
-    sportPlace.push(L.geoJSON.ajax("geojson/parcours-sportifs-saint-michel.geojson", {dataName: '[chemin] Parcour sportif st Michel'}));
-    sentierPlace.push(L.geoJSON.ajax("geojson/parcours-sportifs-saint-michel.geojson", {dataName: '[chemin] Parcour sportif st Michel'}));
-
     // Création des groupes de couches à partir des tableaux de marqueurs (ajouter ici si ajout de markers !)
     var artPlaceLayer = L.layerGroup(artPlace);
     var eauPlaceLayer = L.layerGroup(eauPlace);
@@ -131,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Point de vue" : jumellesPlaceLayer,
         "Mairie" : mairiePlaceLayer,
         "Urbex/Désaffecté" : maisonPlaceLayer,
-        "Chemins" : sentierPlaceLayer,
+        "Chemins/Parcours sportifs" : sentierPlaceLayer,
         "Sports/J.O 2024" : sportPlaceLayer,
         "Lieux culturels" : theatrePlaceLayer,
         "Toilettes publiques" : toilettesPlaceLayer,
@@ -302,64 +303,65 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //~~~Menu listes markers~~~
     // Define the markers by category
+    // Define the markers by category with icons
     const markersByCategory = {
-        "Lieux d'art": artPlaceLayer,
-        "Points d'eau": eauPlaceLayer,
-        "Lieux historique": historiquePlaceLayer,
-        "Lieux d'information": infoPlaceLayer,
-        "Jardin": jardinPlaceLayer,
-        "Point de vue": jumellesPlaceLayer,
-        "Mairie": mairiePlaceLayer,
-        "Urbex/Désaffecté": maisonPlaceLayer,
-        "Chemins": sentierPlaceLayer,
-        "Sports/J.O 2024": sportPlaceLayer,
-        "Lieux culturels": theatrePlaceLayer,
-        "Toilettes publiques": toilettesPlaceLayer,
-        "Markers personnels" : markersPersonnelsLayer,
+        "Lieux d'art": { layer: artPlaceLayer, icon: 'icon/art.png' },
+        "Points d'eau": { layer: eauPlaceLayer, icon: 'icon/eau.png' },
+        "Lieux historique": { layer: historiquePlaceLayer, icon: 'icon/historique.png' },
+        "Lieux d'information": { layer: infoPlaceLayer, icon: 'icon/info.png' },
+        "Jardin": { layer: jardinPlaceLayer, icon: 'icon/jardin.png' },
+        "Point de vue": { layer: jumellesPlaceLayer, icon: 'icon/jumelles.png' },
+        "Mairie": { layer: mairiePlaceLayer, icon: 'icon/mairie.png' },
+        "Urbex/Désaffecté": { layer: maisonPlaceLayer, icon: 'icon/maison.png' },
+        "Chemins/Parcours sportifs": { layer: sentierPlaceLayer, icon: 'icon/sentier.png' },
+        "Sports/J.O 2024": { layer: sportPlaceLayer, icon: 'icon/sport.png' },
+        "Lieux culturels": { layer: theatrePlaceLayer, icon: 'icon/theatre.png' },
+        "Toilettes publiques": { layer: toilettesPlaceLayer, icon: 'icon/toilettes.png' },
+        "Markers personnels": { layer: markersPersonnelsLayer, icon: 'none' },
     };
-    
+  
     // Create the markers menu
     createMarkerMenu(markersByCategory);
-
+    
     function createMarkerMenu(markersByCategory) {
         const markerMenu = document.getElementById('markers');
         markerMenu.innerHTML = '';
         for (const category in markersByCategory) {
-          if (markersByCategory.hasOwnProperty(category)) {
+        if (markersByCategory.hasOwnProperty(category)) {
             const categoryDiv = document.createElement('details');
-            categoryDiv.innerHTML = `<summary>${category}</summary>`;
+            categoryDiv.innerHTML = `<summary><img src="${markersByCategory[category].icon}" width="16" height="16" style="vertical-align: middle;"> ${category}</summary>`;
             categoryDiv.classList.add('category');
             markerMenu.appendChild(categoryDiv);
-      
+    
             const categoryLink = categoryDiv.querySelector('summary');
             categoryLink.href = '#';
             categoryLink.addEventListener('click', function () {
-              map.addLayer(markersByCategory[category]);
+            map.addLayer(markersByCategory[category].layer);
             });
-      
-            const nbMarkers = markersByCategory[category].getLayers().length;
+    
+            const nbMarkers = markersByCategory[category].layer.getLayers().length;
             categoryLink.dataset.nbMarkers = nbMarkers;
             const span = document.createElement('span');
             span.classList.add('category-count');
             span.textContent = ` (${nbMarkers})`;
             categoryLink.appendChild(span);
-      
-            // Ajout de la liste des marqueurs
+    
+            // Add the list of markers
             const markersList = document.createElement('ul');
             markersList.classList.add('markers-list');
-            for (const marker of markersByCategory[category].getLayers()) {
-              const listItem = document.createElement('li');
-              listItem.classList.add('marker-item');
-              listItem.textContent = marker.options.dataName;
-              listItem.addEventListener('click', function () {
+            for (const marker of markersByCategory[category].layer.getLayers()) {
+            const listItem = document.createElement('li');
+            listItem.classList.add('marker-item');
+            listItem.textContent = marker.options.dataName;
+            listItem.addEventListener('click', function () {
                 map.setView(marker.getLatLng(), 15);
-              });
-              markersList.appendChild(listItem);
+            });
+            markersList.appendChild(listItem);
             }
             categoryDiv.appendChild(markersList);
-          }
         }
-      }
+        }
+    }
 
     //~~~Menu ajouts markers~~~
     // Add an event listener to the form
