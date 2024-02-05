@@ -57,7 +57,6 @@ input[type="text"] {
     justify-content: space-between;
 }
 
-.cancel-button,
 .submit-button {
     padding: 8px 170px;
     border-radius: 4px;
@@ -127,4 +126,27 @@ cursor: pointer;
 
 .marker-item:hover {
 background-color: #f9f9f9;
+}
+
+/*Menu add chemin*/
+  
+.clear-button {
+    display: block;
+    margin-top: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.mapPreview {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    height: 300px;
 }

@@ -39,9 +39,10 @@
         <!-- Nav tabs -->
         <div class="sidebar-tabs">
           <ul role="tablist">
-            <li><a href="#home" role="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
             <li><a href="#markers" role="tab"><i class="fa fa-map-marker"></i></a></li>
             <li><a href="#add" role="tab"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#addchemin" role="tab"><i class="fa fa-plus-square"></i></a></li>
             <li><a href="#credits" role="tab"><i class="fa fa-info"></i></a></li>
           </ul>
         </div>
@@ -94,6 +95,16 @@
                       </div>
                   </form>
               </div>
+          </div>
+
+          <div class="sidebar-pane" id="addchemin">
+            <h1 class="sidebar-header">Ajouter un chemin<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            <input type="text" id="geoJsonFileNameInput" placeholder="Nom du chemin" />
+            <input type="file" id="geoJsonFileInput" accept=".geojson" />
+            <button id="importGeoJsonButton">Importer</button>
+            <div id="geoJsonPreview" class="geoJsonPreview"></div> <!-- Zone de prévisualisation -->
+            <button id="clearGeoJsonButton" class="clear-button">Effacer</button> <!-- Bouton pour effacer le fichier -->
+            <div id="mapPreview" class="mapPreview"></div> <!-- Zone de prévisualisation de la carte -->
           </div>
     
           <div class="sidebar-pane" id="credits">

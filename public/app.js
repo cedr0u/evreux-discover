@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var theatrePlace = [];
     var toilettesPlace = [];
     var markersPersonnels = [];
+    var CheminsPersonnels = [];
 
     // Ajout de quelques marqueurs avec des popups et liens
     // -markers de Lieux d'art-
@@ -120,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var theatrePlaceLayer = L.layerGroup(theatrePlace);
     var toilettesPlaceLayer = L.layerGroup(toilettesPlace);
     var markersPersonnelsLayer = L.layerGroup(markersPersonnels);
+    var CheminsPersonnelsLayer = L.layerGroup(CheminsPersonnels);
 
     // Ajout des groupes de couches à l'objet overlayMaps
     var overlayMaps = {
@@ -137,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Lieux culturels" : theatrePlaceLayer,
         "Toilettes publiques" : toilettesPlaceLayer,
         "Markers personnels" : markersPersonnelsLayer,
+        "Chemins personnels (geojson)" : CheminsPersonnelsLayer,
     };
     // Affichage de tout les markers de base
     map.addLayer(artPlaceLayer);
@@ -152,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
     map.addLayer(theatrePlaceLayer);
     map.addLayer(toilettesPlaceLayer);
     map.addLayer(markersPersonnelsLayer);
+    map.addLayer(CheminsPersonnelsLayer);
 
     // Ajout du groupe de marqueurs à la carte
     map.addLayer(markers);
@@ -318,6 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Lieux culturels": { layer: theatrePlaceLayer, icon: 'icon/theatre.png' },
         "Toilettes publiques": { layer: toilettesPlaceLayer, icon: 'icon/toilettes.png' },
         "Markers personnels": { layer: markersPersonnelsLayer, icon: 'none' },
+        "Chemins personnels (geojson)": { layer: CheminsPersonnelsLayer, icon: 'none' },
     };
   
     // Create the markers menu
@@ -364,52 +369,68 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //~~~Menu ajouts markers~~~
+    function areFormFieldsFilled() {
+        var iconSelect = document.getElementById('iconSelect');
+        var coordinatesInput = document.getElementById('coordinates');
+        var dataNameInput = document.getElementById('dataName');
+      
+        if (iconSelect.value === '' || coordinatesInput.value === '' || dataNameInput.value === '') {
+          alert('Veuillez remplir tous les champs obligatoires avant de rajouter un marqueur personnalisé.');
+          return false;
+        }
+        return true;
+      }
+    
     // Add an event listener to the form
     document.getElementById('addMarkerForm').addEventListener('submit', function(event) {
         event.preventDefault();
-      
+    
+        if (!areFormFieldsFilled()) {
+        return;
+        }
+    
         // Get the form elements
         var iconSelect = document.getElementById('iconSelect');
         var coordinatesInput = document.getElementById('coordinates');
         var dataNameInput = document.getElementById('dataName');
         var popupTextInput = document.getElementById('popupText');
         var popupUrlInput = document.getElementById('popupUrl');
-      
+    
         // Get the selected values
         var icon = iconSelect.value;
         var coordinates = coordinatesInput.value.split(',');
         var dataName = dataNameInput.value;
         var popupText = popupTextInput.value;
         var popupUrl = popupUrlInput.value;
-      
+    
         // Create a new marker with the selected values
         var marker = L.marker(coordinates, {
-          icon: new L.Icon({
+        icon: new L.Icon({
             iconUrl: icon,
             iconSize: [64, 64]
-          }),
-          dataName: dataName
+        }),
+        dataName: dataName
         });
-      
+    
         // Add a popup to the marker with the selected text and URL
         marker.bindPopup('<a href="' + popupUrl + '">' + popupText + '</a>');
-      
+    
         // Add the marker to the corresponding array based on its category
         markersPersonnels.push(marker);
-      
+    
         // Add the marker to the map
         markers.addLayer(marker);
         markersPersonnelsLayer.addLayer(marker);
-
-        // Mettre à jour la liste des marqueurs dans la sidebar
+    
+        // Update the list of markers in the sidebar
         createMarkerMenu(markersByCategory);
-            
+    
         // Reset the form
         coordinatesInput.value = '';
         dataNameInput.value = '';
         popupTextInput.value = '';
         popupUrlInput.value = '';
-      });
+    });
     
     // Sélectionnez l'élément HTML pour la prévisualisation de l'icône
     const iconPreview = document.getElementById("iconPreview");
@@ -425,4 +446,127 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Déclenchez le gestionnaire d'événement pour afficher l'icône par défaut
     document.getElementById("iconSelect").dispatchEvent(new Event("change"));
+
+    //~~~Menu ajouts chemin~~~
+    function importGeoJsonFile(file) {
+        clearGeoJson(); // Clear the preview
+      
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const geoJsonData = JSON.parse(event.target.result);
+          const geoJsonLayer = L.geoJSON(geoJsonData, {
+            onEachFeature: function (feature, layer) {
+              const layerName = document.getElementById("geoJsonFileNameInput").value;
+              layer.options.dataName = layerName; // Add the name to the layer options
+              CheminsPersonnels.push(layer);
+              CheminsPersonnelsLayer.addLayer(layer);
+            }
+          });
+          map.addLayer(geoJsonLayer);
+          createMarkerMenu(markersByCategory); // Update the sidebar
+        };
+        reader.readAsText(file);
+      }
+    
+    document.getElementById("importGeoJsonButton").addEventListener("click", () => {
+    const inputElement = document.getElementById("geoJsonFileInput");
+    if (inputElement.files.length > 0) {
+        const file = inputElement.files[0];
+        importGeoJsonFile(file);
+        inputElement.value = ""; // Réinitialisez l'entrée de fichier
+    }
+    });
+
+    // Afficher la prévisualisation du fichier GeoJSON
+    function displayGeoJsonPreview(geoJson) {
+        const previewContainer = document.getElementById('geoJsonPreview');
+        previewContainer.innerHTML = '';
+        const features = geoJson.features;
+        if (features && features.length > 0) {
+            features.forEach(feature => {
+                const type = feature.geometry.type;
+                if (type === 'Point') {
+                    const coordinates = feature.geometry.coordinates;
+                    addMarkerToMapPreview(coordinates[1], coordinates[0], feature.properties.name);
+                } else if (type === 'LineString' || type === 'Polygon') {
+                    addGeoJsonToMapPreview(feature);
+                }
+            });
+        } else {
+            const noFeaturesPreview = document.createElement('p');
+            noFeaturesPreview.textContent = 'Aucune fonctionnalité trouvée dans le fichier GeoJSON.';
+            previewContainer.appendChild(noFeaturesPreview);
+        }
+    }
+
+    // Effacer le fichier GeoJSON actuellement chargé
+    function clearGeoJson() {
+        document.getElementById('geoJsonFileInput').value = '';
+        document.getElementById('geoJsonPreview').innerHTML = '';
+        document.getElementById('mapPreview').innerHTML = '';
+        if (mapPreview._leaflet) {
+            mapPreview._leaflet.remove();
+            mapPreview._leaflet = null;
+        }
+    }
+
+    // Écouter l'événement de changement de fichier GeoJSON
+    document.getElementById('geoJsonFileInput').addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const geoJson = JSON.parse(reader.result);
+                displayGeoJsonPreview(geoJson);
+            };
+            reader.readAsText(file);
+        } else {
+            clearGeoJson();
+        }
+    });
+
+    // Écouter le bouton d'effacement du fichier GeoJSON
+    document.getElementById('clearGeoJsonButton').addEventListener('click', clearGeoJson);
+        
+    // Ajouter un marqueur à la carte de prévisualisation
+    function addMarkerToMapPreview(lat, lng, title) {
+        const mapPreview = document.getElementById('mapPreview')
+        if (!mapPreview._leaflet) {
+          mapPreview._leaflet = L.map(mapPreview).setView([lat, lng], 13)
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(mapPreview._leaflet)
+        }
+        L.marker([lat, lng]).addTo(mapPreview._leaflet).bindPopup(title)
+      }
+    
+    // Ajouter une couche GeoJSON à la carte de prévisualisation
+    function addGeoJsonToMapPreview(feature) {
+        const mapPreview = document.getElementById('mapPreview')
+        if (!mapPreview._leaflet) {
+          mapPreview._leaflet = L.map(mapPreview).setView([feature.geometry.coordinates[1][1], feature.geometry.coordinates[1][0]], 13)
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(mapPreview._leaflet)
+        }
+        L.geoJSON(feature).addTo(mapPreview._leaflet)
+      }
+    
+    // Écouter l'événement de changement de fichier GeoJSON
+    document.getElementById('geoJsonFileInput').addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            const geoJson = JSON.parse(reader.result);
+            displayGeoJsonPreview(geoJson);
+        };
+        reader.readAsText(file);
+        } else {
+        clearGeoJson();
+        }
+    });
+    
+    // Écouter le bouton d'effacement du fichier GeoJSON
+    document.getElementById('clearGeoJsonButton').addEventListener('click', clearGeoJson);
 });
