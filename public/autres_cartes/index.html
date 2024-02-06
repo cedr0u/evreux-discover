@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Créer une carte</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <h1>Créer une carte</h1>
+    <form id="carte-form">
+      <label for="nom-carte">Nom de la carte :</label><br />
+      <input type="text" id="nom-carte" name="nom-carte" required /><br /><br />
+
+      <label for="description">Description :</label><br />
+      <textarea id="description" name="description" required></textarea><br /><br />
+
+      <label for="coordonees-geographiques">Coordonnées géographiques (latitude, longitude) :</label><br />
+      <input type="text" id="coordonees-geographiques" name="coordonees-geographiques" required /><br /><br />
+
+      <label for="niveau-zoom">Niveau de zoom :</label><br />
+      <input type="range" id="niveau-zoom" name="niveau-zoom" min="1" max="19" value="12" required /><br /><br />
+
+      <input type="submit" value="Créer la carte" />
+    </form>
+  </body>
+</html>
