@@ -23,19 +23,20 @@ body {
   height: 35%;
   width: auto;
   position: absolute;
-  top: 35%;
+  top: 40%;
   right: 20%;
 }
 
 #texte-bouton-acces-carte{
   position: absolute;
-  right: 20%;
-  top: 70%;
+  right: 18%;
+  top: 75%;
   background-color: #fff;
 }
 
 /* HEADER */
 .header-content {
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,6 +85,7 @@ body {
 .header a:hover,
 .header a:visited{
   color:rgb(0, 0, 0) ;
+  text-decoration: none;
 }
 
 /* SLIDER */
@@ -165,7 +167,6 @@ body {
 /**//**//**//**//**//**//* corp de la page *//**//**//**/
 
 .corp-page {
-  background-color:  #999999;
   position: absolute;
   top: 650px;
   width: 100%;
@@ -180,7 +181,7 @@ body {
   width: 100%;
   height: 700px;
   background-color:rgb(44, 44, 44);
-  border-radius: 25px; 
+  border-radius: 50px; 
   color: white;
 }
 
@@ -190,17 +191,18 @@ body {
   top: 15%;
   width: 70%;
   height: 600px;
+  left: 0%;
   border-style:solid;
   border-width: 10px;
   border-color: #fff;
   border-radius: 50px; 
   color: white;
-  font-size: x-large;
+  font-size: 130%;
 }
 
 #screenshot-map{
-  height: 29%;
-  width: auto;
+  height: auto;
+  width: 28%;
   position: absolute;
   top: 10%;
   right: 1%;
@@ -209,7 +211,7 @@ body {
 #titre-notre-projet{
   position: absolute;
   top: 5%;
-  left: 40%;
+  left: 30%;
   text-align: center;
   background-color: grey;
   font-size: xx-large;
@@ -219,34 +221,54 @@ body {
 
 .fonctionalitees {
   position: absolute;
-  top: 750px;
-  left: 2.5%;
-  width: 95%;
+  top: 780px;
+  left: 0%;
+  width: 100%;
   height: 700px;
-  background-color: yellow;
-  border-radius: 25px; 
-  color: black;
+  background-color: rgb(44, 44, 44);
+  border-radius: 50px; 
+  color: white;
 }
 
 #fonctionalitees-content{
   position: absolute;
-  top: 20%;
-  width: 100%;
-  height: 600px;
+  top: 18%;
+  text-align: center;
+  width: 60%;
+  right: 0%;
+  height: auto;
   border-radius: 50px; 
-  color: black;
-  font-size: x-large;
+  color: white;
+  font-size: 130%;
+  border-style:solid;
+  border-width: 10px;
+  border-color: #fff;
+  border-radius: 50px; 
 }
 
 #titre-fonctionalitees{
   position: absolute;
   top: 5%;
-  left: 40%;
-  text-align: center;
+  right: 25%;
+  text-align: justify;
   background-color: grey;
   font-size: xx-large;
   text-decoration: underline;
   text-decoration: solid;
+}
+#image-ex1{
+  height: auto;
+  width: 20%;
+  top: 10%;
+  left: 10%;
+}
+
+#image-ex2{
+  height: auto;
+  width: 20%;
+  position: absolute;
+  top: 50%;
+  left: 10%;
 }
 .utilisation {
   position: absolute;
@@ -318,6 +340,7 @@ body {
 
 /* HEADER */
 .header-content {
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,6 +390,7 @@ body {
 .header a:hover,
 .header a:visited{
   color:rgb(0, 0, 0) ;
+  text-decoration: none;
 }
 
 /* SLIDER */
@@ -482,8 +506,8 @@ body {
 }
 
 #screenshot-map{
-  height: 36%;
-  width: auto;
+  height: auto;
+  width: 28%;
   position: absolute;
   top: 10%;
   right: 1%;
@@ -514,7 +538,8 @@ body {
 #fonctionalitees-content{
   position: absolute;
   top: 18%;
-  width: 70%;
+  text-align: center;
+  width: 60%;
   right: 0%;
   height: auto;
   border-radius: 50px; 
@@ -529,13 +554,30 @@ body {
 #titre-fonctionalitees{
   position: absolute;
   top: 5%;
-  left: 40%;
-  text-align: center;
+  right: 25%;
+  text-align: justify;
   background-color: grey;
   font-size: xx-large;
   text-decoration: underline;
   text-decoration: solid;
 }
+
+#image-ex1{
+  height: auto;
+  width: 20%;
+  top: 5%;
+  left: 1%;
+}
+
+#image-ex2{
+  height: auto;
+  width: 20%;
+  position: absolute;
+  top: 40%;
+  left: 1%;
+}
+
+
 
 .utilisation {
   position: absolute;
