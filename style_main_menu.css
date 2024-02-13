@@ -4,7 +4,6 @@ html {
   background-color: white;
   font-family: 'Gill Sans', sans-serif;
 }
-
 body {
   color: black;
   background-color: white;
@@ -12,11 +11,16 @@ body {
 
 .texte_bienvenue {
   position: absolute;
-  top: 150px;
+  top: 125px;
+  padding-top: 2.5%;
+  padding-bottom: 1%;
+  padding-right: 2%;
+  padding-left: 2%;
   right: 25px;
   width: 40%;
   background-color: rgba(173, 252, 234, 1);
   color: black;
+  border-radius: 40%;
   
 }
 #bouton-acces-carte{
@@ -181,8 +185,9 @@ body {
   left: 0%;
   width: 100%;
   height: 710px;
-  background-color:rgb(44, 44, 44);
   border-radius: 50px; 
+  border-color: lightgreen;
+  border-width: 10%;
   color: white;
 }
 
@@ -195,11 +200,11 @@ body {
   left: 0%;
   border-style:solid;
   border-width: 5px;
-  border-color: #fff;
+  border-color: lightgreen;
   border-radius: 50px; 
   padding-left: 1.5%;
   padding-right: 1.5%;
-  color: white;
+  color: black;
   font-size: 130%;
 }
 
@@ -216,20 +221,25 @@ body {
   top: 5%;
   left: 30%;
   text-align: center;
-  background-color: grey;
   font-size: xx-large;
+  background-color: lightgreen;
   text-decoration: underline;
+  color: black;
   text-decoration: solid;
 }
 
 .fonctionalitees {
   position: absolute;
   top: 780px;
+
   left: 0%;
   width: 100%;
   height: 710px;
-  background-color: rgb(44, 44, 44);
+  
   border-radius: 50px; 
+  border: lightgreen;
+  border-width: 10px;
+  border-color: lightgreen;
   color: white;
 }
 
@@ -241,11 +251,11 @@ body {
   right: 0%;
   height: auto;
   border-radius: 50px; 
-  color: white;
+  color: black;
   font-size: 130%;
   border-style:solid;
   border-width: 5px;
-  border-color: #fff;
+  border-color: lightgreen;
   border-radius: 50px; 
   padding-left: 1.5%;
   padding-right: 1.5%;
@@ -256,36 +266,49 @@ body {
   top: 5%;
   right: 25%;
   text-align: justify;
-  background-color: grey;
+  background-color: lightgreen;
   font-size: xx-large;
+  color: black;
   text-decoration: underline;
   text-decoration: solid;
 }
 #image-ex1{
   height: auto;
+  position: absolute;
   width: 20%;
   top: 10%;
-  left: 10%;
+  left: 0%;
 }
 
 #image-ex2{
   height: auto;
   width: 20%;
   position: absolute;
-  top: 50%;
-  left: 10%;
+  top: 40%;
+  left: 15%;
 }
 .utilisation {
   position: absolute;
-  top: 1550px;
+  top: 1450px;
   left: 0%;
   width: 100%;
   height: 710px;
-  background-color: rgb(44, 44, 44);
   border-radius: 50px; 
-  color: white;
+  border-color: lightgreen;
+  color: black;
 }
-.utilisation#content {
+#titre-utilistation{
+  position: absolute;
+  background-color: lightgreen;
+  top: 5%;
+  right: 25%;
+  text-align: justify;
+  font-size: xx-large;
+  color: black;
+  text-decoration: underline;
+  text-decoration: solid;
+}
+#utilisation-content {
   position: absolute;
   top: 18%;
   text-align: center;
@@ -293,11 +316,11 @@ body {
   right: 0%;
   height: auto;
   border-radius: 50px; 
-  color: white;
+  color: black;
   font-size: 130%;
   border-style:solid;
   border-width: 5px;
-  border-color: #fff;
+  border-color: lightgreen;
   border-radius: 50px; 
   padding-left: 1.5%;
   padding-right: 1.5%;
@@ -310,8 +333,7 @@ body {
   height: 150px;
   color: white;
   position: absolute;
-  top: 3000px;
-
+  top: 2800px;
 }
 }
 
