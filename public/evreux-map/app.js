@@ -321,8 +321,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "Sports/J.O 2024": { layer: sportPlaceLayer, icon: 'icon/sport.png' },
         "Lieux culturels": { layer: theatrePlaceLayer, icon: 'icon/theatre.png' },
         "Toilettes publiques": { layer: toilettesPlaceLayer, icon: 'icon/toilettes.png' },
-        "Markers personnels": { layer: markersPersonnelsLayer, icon: 'none' },
-        "Chemins personnels (geojson)": { layer: CheminsPersonnelsLayer, icon: 'none' },
+        "Markers personnels": { layer: markersPersonnelsLayer, icon: 'icon/location_point.png' },
+        "Chemins personnels (geojson)": { layer: CheminsPersonnelsLayer, icon: 'icon/location_chemin.png' },
     };
   
     // Create the markers menu

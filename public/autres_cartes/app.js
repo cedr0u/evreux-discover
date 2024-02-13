@@ -321,8 +321,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "Sports/J.O 2024": { layer: sportPlaceLayer, icon: 'icon/sport.png' },
         "Lieux culturels": { layer: theatrePlaceLayer, icon: 'icon/theatre.png' },
         "Toilettes publiques": { layer: toilettesPlaceLayer, icon: 'icon/toilettes.png' },
-        "Markers personnels": { layer: markersPersonnelsLayer, icon: 'none' },
-        "Chemins personnels (geojson)": { layer: CheminsPersonnelsLayer, icon: 'none' },
+        "Markers personnels": { layer: markersPersonnelsLayer, icon: 'icon/location_point.png' },
+        "Chemins personnels (geojson)": { layer: CheminsPersonnelsLayer, icon: 'icon/location_chemin.png' },
     };
   
     // Create the markers menu
@@ -569,4 +569,99 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // Écouter le bouton d'effacement du fichier GeoJSON
     document.getElementById('clearGeoJsonButton').addEventListener('click', clearGeoJson);
+
+    //~~~Menu parametres~~~
+    const form = document.getElementById('parameters-form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const latInput = document.getElementById('lat-input');
+      const lngInput = document.getElementById('lng-input');
+      const zoomInput = document.getElementById('zoom-input');
+      const mapNameInput = document.getElementById('map-name-input');
+      const lat = parseFloat(latInput.value);
+      const lng = parseFloat(lngInput.value);
+      const zoom = parseInt(zoomInput.value);
+      const mapName = mapNameInput.value;
+      // Set the map parameters
+      map.setView([lat, lng], zoom);
+      map.options.title = mapName;
+      // Save the map parameters to local storage
+      localStorage.setItem('map-parameters', JSON.stringify({ lat, lng, zoom, mapName }));
+    });
+
+    //~~~Menu charger-enregistrer~~~
+    // Save map parameters, markers, and GeoJSON layers to a JSON file
+    function saveMapData() {
+        const mapName = document.getElementById("map-name-input").value;
+        const mapParameters = {
+        lat: map.getCenter().lat,
+        lng: map.getCenter().lng,
+        zoom: map.getZoom(),
+        mapName,
+        };
+        
+        const markersData = [];
+        markers.eachLayer((layer) => {
+        if (layer instanceof L.Marker) {
+            const markerData = {
+            type: "Marker",
+            lat: layer.getLatLng().lat,
+            lng: layer.getLatLng().lng,
+            iconUrl: layer.options.icon.options.iconUrl,
+            dataName: layer.options.dataName,
+            popupText: layer.getPopup()._content,
+            popupUrl: layer.getPopup().options.href,
+            };
+            markersData.push(markerData);
+        }
+        });
+        
+        const geoJsonLayersData = [];
+        CheminsPersonnelsLayer.eachLayer((layer) => {
+        if (layer instanceof L.GeoJSON) {
+            const geoJsonData = layer.toGeoJSON();
+            geoJsonData.dataName = document.getElementById("geoJsonFileNameInput").value;
+            geoJsonLayersData.push(geoJsonData);
+        }
+        });
+        
+        const mapData = {
+        mapParameters,
+        markersData,
+        geoJsonLayersData,
+        };
+        
+        const jsonData = JSON.stringify(mapData, null, 2);
+        const blob = new Blob([jsonData], { type: "application/json" });
+        saveAs(blob, `${mapName}.json`);
+    }
+    
+    // Load map parameters, markers, and GeoJSON layers from a JSON file
+    function loadMapData(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+        const jsonData = JSON.parse(event.target.result);
+        const { mapParameters, markersData, geoJsonLayersData } = jsonData;
+        map.setView([mapParameters.lat, mapParameters.lng], mapParameters.zoom);
+        map.options.title = mapParameters.mapName;
+        markers.clearLayers();
+        CheminsPersonnelsLayer.clearLayers();
+        markersData.forEach((markerData) => {
+            const icon = new L.Icon({ iconUrl: markerData.iconUrl, iconSize: [64, 64] });
+            const marker = L.marker([markerData.lat, markerData.lng], { icon, dataName: markerData.dataName }).addTo(markers);
+            marker.bindPopup(`<a href="${markerData.popupUrl}">${markerData.popupText}</a>`);
+        });
+        geoJsonLayersData.forEach((geoJsonData) => {
+            const geoJsonLayer = L.geoJSON(geoJsonData, { onEachFeature: onEachFeature }).addTo(geoJsonLayers);
+            geoJsonLayer.options.dataName = geoJsonData.dataName;
+            CheminsPersonnelsLayer.addLayer(geoJsonLayer);
+        });
+        };
+        reader.readAsText(file);
+    }
+    
+    // Add event listeners to the save and load buttons
+    document.getElementById("save-parameters").addEventListener("click", saveMapData);
+    document.getElementById("load-parameters").addEventListener("change", loadMapData);
 });
