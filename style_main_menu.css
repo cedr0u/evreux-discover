@@ -1,4 +1,4 @@
-/* ce CSS est utilisé pour les écrans ayant une largeure entre 1200px et 1500px (l'écran PC portable par ex) */
+/* ce CSS est utilisé pour les écrans ayant une largeure entre 1200px et 1600px (l'écran PC portable par ex) */
 @media screen and (min-width: 0px) and (max-width: 1600px){ 
 html {
   background-color: white;
@@ -12,10 +12,10 @@ body {
 .texte_bienvenue {
   position: absolute;
   top: 100px;
-  padding-top: 1.5%;
-  padding-bottom: 1.5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
   padding-right: 2%;
-  padding-left: 2.5%;
+  padding-left: 3%;
   right: 25px;
   width: 35%;
   background-color: rgba(173, 252, 234, 1);
@@ -28,12 +28,12 @@ body {
   width: auto;
   position: absolute;
   top: 50%;
-  right: 20%;
+  right: 12.5%;
 }
 
 #texte-bouton-acces-carte{
   position: absolute;
-  right: 15%;
+  right: 7%;
   top: 90%;
 
   background-color: rgba(173, 252, 234, 1);
@@ -213,7 +213,7 @@ body {
   width: 28%;
   position: absolute;
   top: 10%;
-  right: 2.5%;
+  right: 1.5%;
 }
 
 #titre-notre-projet{
@@ -265,11 +265,11 @@ body {
   position: absolute;
   top: 5%;
   right: 25%;
-  text-align: justify;
-  background-color: lightgreen;
+  text-align: center;
   font-size: xx-large;
+  background-color: lightgreen;
+
   color: black;
-  text-decoration: underline;
   text-decoration: solid;
 }
 #image-ex1{
@@ -287,7 +287,7 @@ body {
   top: 40%;
   left: 15%;
 }
-.utilisation {
+.fonctionalitees-avancee {
   position: absolute;
   top: 1450px;
   left: 0%;
@@ -297,18 +297,62 @@ body {
   border-color: lightgreen;
   color: black;
 }
-#titre-utilistation{
+#titre-fonctionalitees-avancee{
   position: absolute;
-  background-color: lightgreen;
   top: 1%;
-  right: 25%;
-  text-align: justify;
+  left: 25%;
+  text-align: center;
   font-size: xx-large;
+  background-color: lightgreen;
   color: black;
-  text-decoration: underline;
   text-decoration: solid;
 }
-#utilisation-content {
+#fonctionalitees-avancee-content {
+  position: absolute;
+  top: 18%;
+  text-align: center;
+  width: 60%;
+  left: 1%;
+  height: auto;
+  border-radius: 50px; 
+  color: black;
+  font-size: 130%;
+  border-style:solid;
+  border-width: 5px;
+  border-color: lightgreen;
+  border-radius: 50px; 
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+}
+
+
+.qui-sommes-nous{
+  position: absolute;
+  top: 2050px;
+
+  right: 0%;
+  width: 100%;
+  height: 710px;
+  
+  border-radius: 50px; 
+  border: lightgreen;
+  border-width: 10px;
+  border-color: lightgreen;
+  color: white;
+}
+#titre-qui-sommes-nous{
+  position: absolute;
+  top: 5%;
+  right: 20%;
+  text-align: center;
+  font-size: xx-large;
+  background-color: lightgreen;
+
+  color: black;
+  text-decoration: solid;
+
+}
+#qui-sommes-nous-content{
   position: absolute;
   top: 18%;
   text-align: center;
@@ -324,47 +368,19 @@ body {
   border-radius: 50px; 
   padding-left: 1.5%;
   padding-right: 1.5%;
+
 }
 /* FOOTER */
 
-@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:300);
-
-body {
-    font-family: 'Alegreya Sans', sans-serif;
-}
-
-/* Sticky footer position and size
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 300px;
-}
 .footer {
   position: absolute;
-  bottom: 0;
+  top: 2500px;
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 200px;
 }
 
-/* Taller footer on small screens */
-@media (max-width: 567em) {
-    body {
-      margin-bottom: 700px;
-    }
-    .footer {
-      height: 200px;
-    }
-}
-
-/* Sticky footer style and color
--------------------------------------------------- */
 footer {
-  padding-top: 30px;
   background-color: #292c2f;
   color: #bbb;
 }
@@ -377,7 +393,6 @@ footer a {
 footer a:hover, footer a:focus {
   color: #aaa;
   text-decoration:none;
-  border-bottom:1px dotted #999;
 }
 
 footer .form-control {
@@ -386,10 +401,11 @@ footer .form-control {
     border: none;
     resize: none;
     color: #d1d2d2;
-    padding: 0.7em 1em;
 }
 
 }
+
+
 
 
 /* pour les très grands écrans : */ 
