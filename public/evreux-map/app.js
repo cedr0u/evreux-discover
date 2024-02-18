@@ -32,6 +32,23 @@ document.addEventListener("DOMContentLoaded", function () {
     // Création d'un groupe de marqueurs
     const markers = L.layerGroup();
 
+    // Récupération de la taille de l'icône à partir de l'URL
+    function getUrlParameter(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    const tailleIconInput = document.getElementById('tailleIconInput');
+    const tailleIcon = getUrlParameter('tailleIcon') || 55;
+    tailleIconInput.value = tailleIcon;
+
+    document.getElementById('tailleIconForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const tailleIcon = tailleIconInput.value;
+        const url = window.location.href.split('?')[0] + '?tailleIcon=' + tailleIcon;
+        window.location.href = url;
+    });
+
     // Création/initialisation des tableaux de marqueurs par catégorie
     var artPlace = [];
     var eauPlace = [];
@@ -56,52 +73,55 @@ document.addEventListener("DOMContentLoaded", function () {
     // -markers de Jardin-
     // -markers de Point de vue-
     // -markers de Mairie-
-    mairiePlace.push(L.marker([49.02701441558723, 1.1514063806067707], {dataName: 'Mairie d\'Évreux'}).bindPopup('<a href="https://evreux.fr/">Mairie d\'Évreux</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
-    mairiePlace.push(L.marker([49.02663557689257, 1.1717314547964557], {dataName: 'Mairie annexe de Nétreville'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
-    mairiePlace.push(L.marker([49.01666545837922, 1.1236935064862954], {dataName: 'Mairie annexe de Navarre'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
-    mairiePlace.push(L.marker([49.009319333109275, 1.1592238130113732], {dataName: 'Mairie annexe de La Madeleine'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de La Madeleine</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
-    mairiePlace.push(L.marker([49.03297000482163, 1.1361738688974927], {dataName: 'Mairie annexe de Saint-Michel'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de Saint-Michel</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [64, 64]})));
+    mairiePlace.push(L.marker([49.02701441558723, 1.1514063806067707], {dataName: 'Mairie d\'Évreux'}).bindPopup('<a href="https://evreux.fr/">Mairie d\'Évreux</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [tailleIcon, tailleIcon]})));
+    mairiePlace.push(L.marker([49.02663557689257, 1.1717314547964557], {dataName: 'Mairie annexe de Nétreville'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [tailleIcon, tailleIcon]})));
+    mairiePlace.push(L.marker([49.01666545837922, 1.1236935064862954], {dataName: 'Mairie annexe de Navarre'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [tailleIcon, tailleIcon]})));
+    mairiePlace.push(L.marker([49.009319333109275, 1.1592238130113732], {dataName: 'Mairie annexe de La Madeleine'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de La Madeleine</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [tailleIcon, tailleIcon]})));
+    mairiePlace.push(L.marker([49.03297000482163, 1.1361738688974927], {dataName: 'Mairie annexe de Saint-Michel'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de Saint-Michel</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [tailleIcon, tailleIcon]})));
     
     // -markers de Urbex/Désaffecté-
-    maisonPlace.push(L.marker([49.02443370332018, 1.1659685167606004], {dataName: 'Usine Nétreville Philips'}).bindPopup('<a href="#">Urbex usine Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [64, 64]})));
-    maisonPlace.push(L.marker([49.016118235216226, 1.1209848510133373], {dataName: 'Usine de Navarre'}).bindPopup('<a href="#">Usine de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [64, 64]})));
-    maisonPlace.push(L.marker([49.015833797486955, 1.1308112571000448], {dataName: 'Les 3 immeubles abandonnées'}).bindPopup('<a href="#">Les 3 immeubles abandonnées</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [64, 64]})));
-    maisonPlace.push(L.marker([49.03955410474035, 1.1249129025005469], {dataName: 'Cité Lafayette (américaine)'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Cité Lafayette (américaine)</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [64, 64]})));
+    maisonPlace.push(L.marker([49.02443370332018, 1.1659685167606004], {dataName: 'Usine Nétreville Philips'}).bindPopup('<a href="#">Urbex usine Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
+    maisonPlace.push(L.marker([49.016118235216226, 1.1209848510133373], {dataName: 'Usine de Navarre'}).bindPopup('<a href="#">Usine de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
+    maisonPlace.push(L.marker([49.015833797486955, 1.1308112571000448], {dataName: 'Les 3 immeubles abandonnées'}).bindPopup('<a href="#">Les 3 immeubles abandonnées</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
+    maisonPlace.push(L.marker([49.03955410474035, 1.1249129025005469], {dataName: 'Cité Lafayette (américaine)'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Cité Lafayette (américaine)</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
         //ancienne hopital d'evreux
         //ancienne hopital americain d'evreux
 
     // -markers de Chemins-
     sentierPlace.push(L.geoJSON.ajax("geojson/parcours-sportifs-saint-michel.geojson", {dataName: '[chemin] Parcour sportif st Michel'}));
-    sentierPlace.push(L.marker([49.0358057661843, 1.126108168140265], {dataName: 'Début du Parcour sportif st Michel'}).bindPopup('<a href="#">Début du Parcour sportif st Michel</a>').setIcon(new L.Icon({iconUrl: 'icon/sentier.png', iconSize: [64, 64]})));
+    sentierPlace.push(L.marker([49.0358057661843, 1.126108168140265], {dataName: 'Début du Parcour sportif st Michel'}).bindPopup('<a href="#">Début du Parcour sportif st Michel</a>').setIcon(new L.Icon({iconUrl: 'icon/sentier.png', iconSize: [tailleIcon, tailleIcon]})));
+    sentierPlace.push(L.geoJSON.ajax("geojson/Coteaux_de_saint_Michel.geojson", {dataName: '[chemin] coteaux de st Michel'}));
+    sentierPlace.push(L.geoJSON.ajax("geojson/Panorama_evreux_cinema.geojson", {dataName: '[chemin] Panorama d`évreux'}));
+    sentierPlace.push(L.geoJSON.ajax("geojson/Voie_verte_Évreux.geojson", {dataName: '[chemin] Voie verte'}));
 
     // -markers de Sports/J.O 2024-
-    sportPlace.push(L.marker([49.017185832405126, 1.126595959278061], {dataName: 'Mouv\'roc - sport plein air'}).bindPopup('<a href="#">Mouv\'roc - sport plein air</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.02709014691586, 1.1703939008949693], {dataName: 'Parc Street workout - musculation en extérieur'}).bindPopup('<a href="#">Parc Street workout - musculation en extérieur</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.03005944260493, 1.1803060224204367], {dataName: 'Terrain de football'}).bindPopup('<a href="#">Terrain de football</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.01683085610241, 1.1167821390512076], {dataName: 'Terrain de football des Marronniers'}).bindPopup('<a href="#">Terrain de football des Marronniers</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.021798825294404, 1.1282900390082073], {dataName: 'Stade Roger Rochard'}).bindPopup('<a href="#">Stade Roger Rochard</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.0050878386349, 1.161876408159791], {dataName: 'Stade Mathieu Bodmer'}).bindPopup('<a href="#">Stade Mathieu Bodmer</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.033551510613414, 1.1456511710273956], {dataName: 'Stade du Val Iton'}).bindPopup('<a href="#">Stade du Val Iton</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.01995959354048, 1.1696158792582054], {dataName: 'Stade de Nétreville'}).bindPopup('<a href="#">Stade de Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.01683085610241, 1.1167821390512076], {dataName: 'Stades du Parc de Navarre'}).bindPopup('<a href="#">Stades du Parc de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.02448123455674, 1.130482020784121], {dataName: 'Stade Alphonse Pierre'}).bindPopup('<a href="#">Stade Alphonse Pierre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.00987459521572, 1.1134130805162772], {dataName: 'Hippodrome de Navarre'}).bindPopup('<a href="#">Hippodrome de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.0345019031241, 1.118325944950614], {dataName: 'Golf Municipal d\'Evreux'}).bindPopup('<a href="#">Golf Municipal d\'Evreux</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.00718786598653, 1.1617759009180084], {dataName: 'Gymnase Pablo Néruda'}).bindPopup('<a href="#">Gymnase Pablo Néruda</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.02575322581877, 1.1591385980856772], {dataName: 'Gymnase Jean Jaurès'}).bindPopup('<a href="#">Gymnase Jean Jaurès</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.03363273578285, 1.1353547346134938], {dataName: 'Gymnase Artois'}).bindPopup('<a href="#">Gymnase Artois</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.00593753338902, 1.1558903698353686], {dataName: 'Gymnase Maxime Marchand'}).bindPopup('<a href="#">Gymnase Maxime Marchand</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.027676913252726, 1.171598262129472], {dataName: 'Gymnase Jean Bart'}).bindPopup('<a href="#">Gymnase Jean Bart</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.00697176820528, 1.1493826925783304], {dataName: 'Gymnase Georges Politzer'}).bindPopup('<a href="#">Gymnase Georges Politzer</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.01849254614756, 1.1220506674759905], {dataName: 'Gymnase de navarre'}).bindPopup('<a href="#">Gymnase de navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.00823695687955, 1.1408488399889234], {dataName: 'Gymnase du Canada'}).bindPopup('<a href="#">Gymnase du Canada</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.010982146887514, 1.1630501462122775], {dataName: 'Gymnase Irène et Frédéric Joliot-Curie'}).bindPopup('<a href="#">Gymnase Irène et Frédéric Joliot-Curie</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.01415215155127, 1.1509221040772952], {dataName: 'Gymnase Jean Moulin'}).bindPopup('<a href="#">Gymnase Jean Moulin</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.02212833928095, 1.1391048163649613], {dataName: 'Salle Omnisports Jean Fourre'}).bindPopup('<a href="#">Salle Omnisports Jean Fourre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.0234270714207, 1.1295726589679964], {dataName: 'Skatepark navarre'}).bindPopup('<a href="#">Skatepark navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.00605377660724, 1.1595469170367798], {dataName: 'Bowl de la Madeleine'}).bindPopup('<a href="#">Bowl de la Madeleine</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.0064433331647, 1.1613364717821628], {dataName: 'Piscine Plein Soleil'}).bindPopup('<a href="#">Piscine Plein Soleil</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
-    sportPlace.push(L.marker([49.0221629331427, 1.1273308731985334], {dataName: 'Piscine Jean Bouin'}).bindPopup('<a href="#">Piscine Jean Bouin</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [64, 64]})));
+    sportPlace.push(L.marker([49.017185832405126, 1.126595959278061], {dataName: 'Mouv\'roc - sport plein air'}).bindPopup('<a href="#">Mouv\'roc - sport plein air</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.02709014691586, 1.1703939008949693], {dataName: 'Parc Street workout - musculation en extérieur'}).bindPopup('<a href="#">Parc Street workout - musculation en extérieur</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.03005944260493, 1.1803060224204367], {dataName: 'Terrain de football'}).bindPopup('<a href="#">Terrain de football</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.01683085610241, 1.1167821390512076], {dataName: 'Terrain de football des Marronniers'}).bindPopup('<a href="#">Terrain de football des Marronniers</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.021798825294404, 1.1282900390082073], {dataName: 'Stade Roger Rochard'}).bindPopup('<a href="#">Stade Roger Rochard</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.0050878386349, 1.161876408159791], {dataName: 'Stade Mathieu Bodmer'}).bindPopup('<a href="#">Stade Mathieu Bodmer</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.033551510613414, 1.1456511710273956], {dataName: 'Stade du Val Iton'}).bindPopup('<a href="#">Stade du Val Iton</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.01995959354048, 1.1696158792582054], {dataName: 'Stade de Nétreville'}).bindPopup('<a href="#">Stade de Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.01683085610241, 1.1167821390512076], {dataName: 'Stades du Parc de Navarre'}).bindPopup('<a href="#">Stades du Parc de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.02448123455674, 1.130482020784121], {dataName: 'Stade Alphonse Pierre'}).bindPopup('<a href="#">Stade Alphonse Pierre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.00987459521572, 1.1134130805162772], {dataName: 'Hippodrome de Navarre'}).bindPopup('<a href="#">Hippodrome de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.0345019031241, 1.118325944950614], {dataName: 'Golf Municipal d\'Evreux'}).bindPopup('<a href="#">Golf Municipal d\'Evreux</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.00718786598653, 1.1617759009180084], {dataName: 'Gymnase Pablo Néruda'}).bindPopup('<a href="#">Gymnase Pablo Néruda</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.02575322581877, 1.1591385980856772], {dataName: 'Gymnase Jean Jaurès'}).bindPopup('<a href="#">Gymnase Jean Jaurès</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.03363273578285, 1.1353547346134938], {dataName: 'Gymnase Artois'}).bindPopup('<a href="#">Gymnase Artois</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.00593753338902, 1.1558903698353686], {dataName: 'Gymnase Maxime Marchand'}).bindPopup('<a href="#">Gymnase Maxime Marchand</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.027676913252726, 1.171598262129472], {dataName: 'Gymnase Jean Bart'}).bindPopup('<a href="#">Gymnase Jean Bart</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.00697176820528, 1.1493826925783304], {dataName: 'Gymnase Georges Politzer'}).bindPopup('<a href="#">Gymnase Georges Politzer</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.01849254614756, 1.1220506674759905], {dataName: 'Gymnase de navarre'}).bindPopup('<a href="#">Gymnase de navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.00823695687955, 1.1408488399889234], {dataName: 'Gymnase du Canada'}).bindPopup('<a href="#">Gymnase du Canada</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.010982146887514, 1.1630501462122775], {dataName: 'Gymnase Irène et Frédéric Joliot-Curie'}).bindPopup('<a href="#">Gymnase Irène et Frédéric Joliot-Curie</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.01415215155127, 1.1509221040772952], {dataName: 'Gymnase Jean Moulin'}).bindPopup('<a href="#">Gymnase Jean Moulin</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.02212833928095, 1.1391048163649613], {dataName: 'Salle Omnisports Jean Fourre'}).bindPopup('<a href="#">Salle Omnisports Jean Fourre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.0234270714207, 1.1295726589679964], {dataName: 'Skatepark navarre'}).bindPopup('<a href="#">Skatepark navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.00605377660724, 1.1595469170367798], {dataName: 'Bowl de la Madeleine'}).bindPopup('<a href="#">Bowl de la Madeleine</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.0064433331647, 1.1613364717821628], {dataName: 'Piscine Plein Soleil'}).bindPopup('<a href="#">Piscine Plein Soleil</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.0221629331427, 1.1273308731985334], {dataName: 'Piscine Jean Bouin'}).bindPopup('<a href="#">Piscine Jean Bouin</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
     
     // -markers de Lieux culturels-
     // -markers de Toilettes publiques-
@@ -407,7 +427,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var marker = L.marker(coordinates, {
         icon: new L.Icon({
             iconUrl: icon,
-            iconSize: [64, 64]
+            iconSize: [tailleIcon, tailleIcon]
         }),
         dataName: dataName
         });
