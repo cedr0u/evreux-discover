@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mairiePlace.push(L.marker([49.03297000482163, 1.1361738688974927], {dataName: 'Mairie annexe de Saint-Michel'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de Saint-Michel</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [tailleIcon, tailleIcon]})));
     
     // -markers de Urbex/Désaffecté-
-    maisonPlace.push(L.marker([49.02443370332018, 1.1659685167606004], {dataName: 'Usine Nétreville Philips'}).bindPopup('<a href="#">Urbex usine Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
+    maisonPlace.push(L.marker([49.024681231999, 1.1650219320218818], {dataName: 'Usine Nétreville Philips'}).bindPopup('<a href="#">Urbex usine Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
     maisonPlace.push(L.marker([49.016118235216226, 1.1209848510133373], {dataName: 'Usine de Navarre'}).bindPopup('<a href="#">Usine de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
     maisonPlace.push(L.marker([49.015833797486955, 1.1308112571000448], {dataName: 'Les 3 immeubles abandonnées'}).bindPopup('<a href="#">Les 3 immeubles abandonnées</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
     maisonPlace.push(L.marker([49.03955410474035, 1.1249129025005469], {dataName: 'Cité Lafayette (américaine)'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Cité Lafayette (américaine)</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
