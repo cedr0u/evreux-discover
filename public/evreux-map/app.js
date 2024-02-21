@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Création/initialisation des tableaux de marqueurs par catégorie
+    var lieux3D = [];
     var artPlace = [];
     var eauPlace = [];
     var historiquePlace = [];
@@ -66,6 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var CheminsPersonnels = [];
 
     // Ajout de quelques marqueurs avec des popups et liens
+    // -markers de lieux 3D-
+    lieux3D.push(L.marker([49.02475043512676, 1.1662588992127314], {dataName: '3D Usine Nétreville Philips (tunnel)'}).bindPopup('<a href="gaussian_splatting/urbex_usine_netreville/tunnel/index.html">3D Usine Nétreville Philips (tunnel)</a>').setIcon(new L.Icon({iconUrl: 'icon/3d.png', iconSize: [tailleIcon, tailleIcon]})));
+
     // -markers de Lieux d'art-
     // -markers de Points d'eau-
     // -markers de Lieux historique-
@@ -84,8 +88,8 @@ document.addEventListener("DOMContentLoaded", function () {
     maisonPlace.push(L.marker([49.016118235216226, 1.1209848510133373], {dataName: 'Usine de Navarre'}).bindPopup('<a href="#">Usine de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
     maisonPlace.push(L.marker([49.015833797486955, 1.1308112571000448], {dataName: 'Les 3 immeubles abandonnées'}).bindPopup('<a href="#">Les 3 immeubles abandonnées</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
     maisonPlace.push(L.marker([49.03955410474035, 1.1249129025005469], {dataName: 'Cité Lafayette (américaine)'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Cité Lafayette (américaine)</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
-        //ancienne hopital d'evreux
-        //ancienne hopital americain d'evreux
+    maisonPlace.push(L.marker([49.03624920036501, 1.1414338059138183], {dataName: 'Ancienne hopital américaine d`evreux'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Ancienne hopital américaine d`evreux</a>').setIcon(new L.Icon({iconUrl: 'icon/maison.png', iconSize: [tailleIcon, tailleIcon]})));
+    //ancienne hopital d'evreux
 
     // -markers de Chemins-
     sentierPlace.push(L.geoJSON.ajax("geojson/parcours-sportifs-saint-michel.geojson", {dataName: '[chemin] Parcour sportif st Michel'}));
@@ -128,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // -markers de Markers personnels-
 
     // Création des groupes de couches à partir des tableaux de marqueurs (ajouter ici si ajout de markers !)
+    var lieux3DLayer = L.layerGroup(lieux3D);
     var artPlaceLayer = L.layerGroup(artPlace);
     var eauPlaceLayer = L.layerGroup(eauPlace);
     var historiquePlaceLayer = L.layerGroup(historiquePlace);
@@ -146,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Ajout des groupes de couches à l'objet overlayMaps
     var overlayMaps = {
         "<span style='color: blue'>Chemins</span>": lines,
+        "Models 3D de lieux" : lieux3DLayer,
         "Lieux d'art" : artPlaceLayer,
         "Points d'eau" : eauPlaceLayer,
         "Lieux historique" : historiquePlaceLayer,
@@ -162,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Chemins personnels (geojson)" : CheminsPersonnelsLayer,
     };
     // Affichage de tout les markers de base
+    map.addLayer(lieux3DLayer);
     map.addLayer(artPlaceLayer);
     map.addLayer(eauPlaceLayer);
     map.addLayer(historiquePlaceLayer);
@@ -329,6 +336,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Define the markers by category
     // Define the markers by category with icons
     const markersByCategory = {
+        "Models 3D de lieux": { layer: lieux3DLayer, icon: 'icon/3d.png' },
         "Lieux d'art": { layer: artPlaceLayer, icon: 'icon/art.png' },
         "Points d'eau": { layer: eauPlaceLayer, icon: 'icon/eau.png' },
         "Lieux historique": { layer: historiquePlaceLayer, icon: 'icon/historique.png' },
