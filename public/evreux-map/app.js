@@ -72,6 +72,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // -markers de Lieux d'art-
     // -markers de Points d'eau-
+    // coordonne a ameliorer
+    eauPlace.push(L.marker([49.02018355507679, 1.1496412734206904], {dataName: 'Point d`eau jardin public'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau jardin public</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+    eauPlace.push(L.marker([49.0248608538527, 1.1502845306737144], {dataName: 'Point d`eau jardin cathédrale'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau jardin cathédrale</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+    eauPlace.push(L.marker([49.02342916799356, 1.1556594034558134], {dataName: 'Point d`eau cimetière Saint Louis'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau cimetière Saint Louis</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+    eauPlace.push(L.marker([49.011196740813745, 1.1620122156008357], {dataName: 'Point d`eau cimetière Saint André'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau cimetière Saint André</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+    eauPlace.push(L.marker([49.02086148421744, 1.119101372582145], {dataName: 'Point d`eau cimetière de Navarre'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau cimetière de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+
     // -markers de Lieux historique-
     // -markers de Lieux d'information-
     // -markers de Jardin-
@@ -129,6 +136,11 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // -markers de Lieux culturels-
     // -markers de Toilettes publiques-
+    toilettesPlace.push(L.marker([49.020380367794814, 1.1493014814471363], {dataName: 'Toilettes public jardin public'}).bindPopup('<a href="#">Toilettes public jardin public</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [tailleIcon, tailleIcon]})));
+    toilettesPlace.push(L.marker([49.0249926407912, 1.15051691430553], {dataName: 'Toilettes public jardin cathédrale'}).bindPopup('<a href="#">Toilettes public jardin cathédrale</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [tailleIcon, tailleIcon]})));
+    toilettesPlace.push(L.marker([49.027333626416365, 1.1477146256569224], {dataName: 'Toilettes public place du marché'}).bindPopup('<a href="#">Toilettes public place du marché</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [tailleIcon, tailleIcon]})));
+    toilettesPlace.push(L.marker([49.02701441558723, 1.1514063806067707], {dataName: 'Toilettes public mairie'}).bindPopup('<a href="#">Toilettes public mairie</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [tailleIcon, tailleIcon]})));
+
     // -markers de Markers personnels-
 
     // Création des groupes de couches à partir des tableaux de marqueurs (ajouter ici si ajout de markers !)
@@ -387,7 +399,7 @@ document.addEventListener("DOMContentLoaded", function () {
             listItem.classList.add('marker-item');
             listItem.textContent = marker.options.dataName;
             listItem.addEventListener('click', function () {
-                map.setView(marker.getLatLng(), 15);
+                map.setView(marker.getLatLng(), 17);
             });
             markersList.appendChild(listItem);
             }
