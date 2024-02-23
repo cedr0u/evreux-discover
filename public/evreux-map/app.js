@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const tailleIconInput = document.getElementById('tailleIconInput');
-    const tailleIcon = getUrlParameter('tailleIcon') || 55;
+    const tailleIcon = getUrlParameter('tailleIcon') || 45;
     tailleIconInput.value = tailleIcon;
 
     document.getElementById('tailleIconForm').addEventListener('submit', function(event) {
@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Ajout de quelques marqueurs avec des popups et liens
     // -markers de lieux 3D-
     lieux3D.push(L.marker([49.02475043512676, 1.1662588992127314], {dataName: '3D Usine Nétreville Philips (tunnel)'}).bindPopup('<a href="gaussian_splatting/urbex_usine_netreville/tunnel/index.html">3D Usine Nétreville Philips (tunnel)</a>').setIcon(new L.Icon({iconUrl: 'icon/3d.png', iconSize: [tailleIcon, tailleIcon]})));
+    lieux3D.push(L.marker([49.0253145910712, 1.1656430126264936], {dataName: '3D Usine Nétreville Philips (chemin)'}).bindPopup('<a href="gaussian_splatting/urbex_usine_netreville/chemin/index.html">3D Usine Nétreville Philips (chemin)</a>').setIcon(new L.Icon({iconUrl: 'icon/3d.png', iconSize: [tailleIcon, tailleIcon]})));
+    lieux3D.push(L.marker([49.02646565678856, 1.1512659263095817], {dataName: '3D Place de la mairie et théatre'}).bindPopup('<a href="gaussian_splatting/mairie/place/index.html">3D Place de la mairie et théatre</a>').setIcon(new L.Icon({iconUrl: 'icon/3d.png', iconSize: [tailleIcon, tailleIcon]})));
 
     // -markers de Lieux d'art-
     // -markers de Points d'eau-
