@@ -41,6 +41,7 @@ body {
 }
 
 /* HEADER */
+/* 
 .header-content {
   text-decoration: none;
   display: flex;
@@ -94,7 +95,44 @@ body {
   color:rgb(0, 0, 0) ;
   text-decoration: none;
 }
+*/
+/* HEADER */
+nav {
+  z-index: 1;
+  background: white;
+  width: 80%;
+  display: flex; 
+  justify-content: space-between;
+  padding: 10px; 
+  border-radius: 22px;
+  box-shadow: 2px 2px 20px rgb(0,0,0,0.3) ;
+  position: fixed;
+  left: 10%;
+}
 
+nav img {
+  width: 60px;
+  height: auto;
+}
+nav > a {
+  color: black; 
+  text-decoration: none;
+  font-size:xx-large;
+  padding: 8px 16px;
+  border-radius: 22px;
+}
+nav > a:hover{
+
+  transition: 0.255;
+  font-size: xx-large;
+  color: aliceblue;
+  background : grey;
+}
+.separateur_header{
+  background-color: grey;
+  padding: 1px 1px; 
+
+}
 /* SLIDER */
 
 .slider {
@@ -389,21 +427,21 @@ body {
   padding: 40px 0;
   color: #ffffff;
   text-align: center;
+  font-size: x-large;
 }
-.footer-basic img {
-  height: 45px;
+
+.footer-basic .social img {
+  display: inline-block;
+  text-align: center;
+  margin: 0 15px; 
+  height: 80px;
   width: auto;
   font-size: 24px;
   line-height: 40px;
   border-radius: 50%;
-  border: 1px solid #ccc;
-  padding: 5px; /* Ajoute une marge de 5px à l'intérieur de la bordure */
-}
+  border: 3px solid #ccc;
+  padding: 3px;
 
-.footer-basic.social {
-  display: inline-block;
-  text-align: center;
-  margin: 0 50px; /* La moitié de l'espace que vous souhaitez entre les images */
 }
 
 .footer-basic ul {
@@ -413,6 +451,7 @@ body {
   font-size:18px;
   line-height:1.6;
   margin-bottom:0;
+  font-size: x-large;
 }
 
 .footer-basic li {

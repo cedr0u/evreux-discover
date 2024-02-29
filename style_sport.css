@@ -1,0 +1,185 @@
+html{
+  background-image: url('bg1.png');
+}
+body {
+  color: black;
+}
+
+
+/* HEADER */
+nav {
+  z-index: 1;
+  background: white;
+  width: 80%;
+  display: flex; 
+  justify-content: space-between;
+  padding: 10px; 
+  border-radius: 22px;
+  box-shadow: 2px 2px 20px rgb(0,0,0,0.3) ;
+  position: fixed;
+  left: 10%;
+}
+
+nav img {
+  width: 60px;
+  height: auto;
+}
+nav > a {
+  color: black; 
+  text-decoration: none;
+  font-size:xx-large;
+  padding: 8px 16px;
+  border-radius: 22px;
+}
+nav > a:hover{
+
+  transition: 0.255;
+  font-size: xx-large;
+  color: aliceblue;
+  background : grey;
+}
+.separateur_header{
+  background-color: grey;
+  padding: 1px 1px; 
+
+}
+/* CORP PAGE */
+.lieu1{
+  position: absolute;
+  top: 200px;
+  left: 5%;
+  width: 40%;
+  height: auto;
+  position: absolute; 
+  background-image: linear-gradient(to right, #b6fbff, #83a4d4);
+  text-wrap: balance;
+  border-radius:20%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+#titre-lieu1{
+  position: absolute;
+  top: -15%;
+  left: 40%;
+  background-image: linear-gradient(to right, #00b4db, #0083b0);
+ 
+  text-decoration: double;
+  text-decoration: dashed;
+  border: 2px;
+  border-style: dashed;
+}
+
+.lieu2{
+  position: absolute;
+  top: 800px;
+  right: 2.5%;
+  width: 60%;
+  height: auto;
+  position: absolute; 
+  background-image: linear-gradient(to right, #b6fbff, #83a4d4);
+  text-wrap: balance;
+  border-radius:20%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+#titre-lieu2{
+  position: absolute;
+  top: -15%;
+  right: 30%;
+  text-decoration: double;
+  text-decoration: dashed;
+  border: 2px;
+  border-style: dashed;
+  background-image: linear-gradient(to right, #00b4db, #0083b0);
+}
+
+
+/* SLIDER  */
+
+
+
+/* TEST PRIS D'INTERNET MAIS ULTRA COOL !! */
+/* 
+* {
+  box-sizing: border-box;
+}
+
+
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.box {
+  width: 60vmin;
+  height: 60vmin;
+  border: 1px dashed rgba(255,255,255,0.4);
+  position: relative;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.4);
+    transform: scale(1.42);
+  }
+}
+
+.spin-container {
+  width: 100%;
+  height: 100%;
+  animation: spin 12s ease-in-out infinite alternate;
+  position: relative;
+}
+
+.shape {
+  width: 100%;
+  height: 100%;
+  transition: border-radius 1s ease-out;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: morph 8s ease-in-out infinite both alternate;
+  position: absolute;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.bd {
+  width: 142%;
+  height: 142%;
+  position: absolute;
+  left: -21%;
+  top: -21%;
+  background: url(https://avatars.githubusercontent.com/u/55026534?v=4);
+  background-size: 100%;
+  background-position: center center;
+  display: flex;
+  color: #003;
+  font-size: 5vw;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  animation: spin 12s ease-in-out infinite alternate-reverse;
+  opacity: 1;
+  z-index: 2;
+}
+
+@keyframes morph {
+  0% {border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;} 
+  100% {border-radius: 40% 60%;} 
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+*/
