@@ -1,18 +1,31 @@
 /* ce CSS est utilisé pour les écrans ayant une largeure entre 1200px et 1600px (l'écran PC portable par ex) */
 @media screen and (min-width: 0px) and (max-width: 1600px){ 
-html {
-  
-  font-family: 'Gill Sans', sans-serif;
-}
-body {
+
+body :not(#texte_bienvenue){
   color: white;
   background-image: url('bg1.png');
-  background-repeat: no-repeat;
-  background-size: cover; /* This ensures the image covers the entire page */
+  font-family: Georgia, 'Times New Roman', Times, serif;
 
+}
+
+p,ol,ul :not(#texte_bienvenue){
+  color: white;
 }
 
 #texte_bienvenue {
+  /*  */
+  scroll-margin-top: 100px;
+  position: absolute;
+  top: 5%;
+  left: 30%;
+  text-align: center;
+  font-size: xx-large;
+  background-color: lightgreen;
+  text-decoration: underline;
+  color: black;
+  text-decoration: solid;
+
+  /*  */
   scroll-margin-top: 100px;
   position: absolute;
   top: 100px;
@@ -518,6 +531,7 @@ p,ol,ul{
 body {
   color: white;
   background-image: url('bg1.png');
+
 }
 
 #texte_bienvenue {
