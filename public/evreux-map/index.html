@@ -36,7 +36,7 @@
 </head>
 <body>
     <div id="sidebar" class="sidebar collapsed">
-        <!-- Nav tabs -->
+        <!-- Navigations tabs -->
         <div class="sidebar-tabs">
           <ul role="tablist">
             <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
@@ -48,7 +48,7 @@
           </ul>
         </div>
     
-        <!-- Tab panes -->
+        <!-- Tab sidebar pour plugin -->
         <div class="sidebar-content">
           <div class="sidebar-pane" id="home">
             <h1 class="sidebar-header">Présentation<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
@@ -58,6 +58,8 @@
             <p>L'objectif de ce projet est de créer une carte interactive permettant de découvrir les lieux incontournables de la ville d'Evreux, en France. Cette carte offre des informations complémentaires et détaillées sur chaque lieu, ainsi que des recoins et endroits insoupçonnés à explorer. Elle met également en avant les lieux utiles comme les toilettes publiques et les points d'eau gratuits.</p>
             <h2>Fonctionnalités</h2>
             <p>La carte propose de nombreuses fonctionnalités, telles que l'affichage de la carte d'Evreux avec différents fonds de cartes, le regroupement des marqueurs par catégorie grâce au plugin Leaflet.markercluster, l'ajout de marqueurs sur la carte avec des popups et des liens personnalisés, le contrôle des couches pour afficher/masquer certains types de marqueurs, l'affichage d'une barre latérale permettant de naviguer entre les différentes fonctionnalités de la carte, la possibilité d'ajouter un marqueur personnalisé sur la carte, l'affichage des marqueurs regroupés par catégorie dans la barre latérale, la recherche rapide des lieux en fonction de leur catégorie, l'affichage des informations détaillées d'un lieu lorsqu'on clique sur son marqueur, l'affichage d'un rayon de recherche autour d'un lieu pour connaître sa portée, la génération de polygones isochrones pour évaluer le temps de trajet depuis un lieu donné, la possibilité de dessiner des formes sur la carte, la possibilité de localiser sa position sur la carte, et la possibilité de basculer en mode plein écran.</p>
+            <h2>IMPORTANT</h2>
+            <p>Le chargement des modéles 3D peut prendre jusqu'a 1 minutes selon votre connexion internet, soyer patient.</p>
           </div>
     
           <div class="sidebar-pane" id="markers"></div>
@@ -104,13 +106,13 @@
             <a href="https://geojson.io/">
               <li class="geojson-link">Creer un fichier geojson</li>
             </a>
-            <hr> <!-- la ligne là -->
+            <hr>
             <input type="text" id="geoJsonFileNameInput" placeholder="Nom du chemin" />
             <input type="file" id="geoJsonFileInput" accept=".geojson" />
             <button id="importGeoJsonButton">Ajouter</button>
-            <div id="geoJsonPreview" class="geoJsonPreview"></div> <!-- Zone de prévisualisation -->
-            <button id="clearGeoJsonButton" class="clear-button">Effacer</button> <!-- Bouton pour effacer le fichier -->
-            <div id="mapPreview" class="mapPreview"></div> <!-- Zone de prévisualisation de la carte -->
+            <div id="geoJsonPreview" class="geoJsonPreview"></div> <!-- pré-visualisation pour les geojsons la -->
+            <button id="clearGeoJsonButton" class="clear-button">Effacer</button>
+            <div id="mapPreview" class="mapPreview"></div>
           </div>
 
           <div class="sidebar-pane" id="parametres">

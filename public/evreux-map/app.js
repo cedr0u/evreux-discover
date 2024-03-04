@@ -25,14 +25,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "OpenTopoMap": otp,
     };
 
-    // Création de la couche de superposition
+    // création de la couche des chemins
     var lines = new L.TileLayer("http://gps-{s}.tile.openstreetmap.org/lines/{z}/{x}/{y}.png");
 
     //----------------Markers/Points sur la carte et données d'informations------------------
-    // Création d'un groupe de marqueurs
+    // création d'un groupes de marqueurs
     const markers = L.layerGroup();
 
-    // Récupération de la taille de l'icône à partir de l'URL
+    // récupération de la taille de l'icône à partir de l'URL du client
     function getUrlParameter(param) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = url;
     });
 
-    // Création/initialisation des tableaux de marqueurs par catégorie
+    // création/initialisation des tableaux de marqueurs par catégorie
     var lieux3D = [];
     var artPlace = [];
     var eauPlace = [];
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var markersPersonnels = [];
     var CheminsPersonnels = [];
 
-    // Ajout de quelques marqueurs avec des popups et liens
+    // Ajout des marqueurs avec les popups et liens
     // -markers de lieux 3D-
     lieux3D.push(L.marker([49.02475043512676, 1.1662588992127314], {dataName: '3D Usine Nétreville Philips (tunnel)'}).bindPopup('<a href="gaussian_splatting/urbex_usine_netreville/tunnel/index.html">3D Usine Nétreville Philips (tunnel)</a>').setIcon(new L.Icon({iconUrl: 'icon/3d.png', iconSize: [tailleIcon, tailleIcon]})));
     lieux3D.push(L.marker([49.0253145910712, 1.1656430126264936], {dataName: '3D Usine Nétreville Philips (chemin)'}).bindPopup('<a href="gaussian_splatting/urbex_usine_netreville/chemin/index.html">3D Usine Nétreville Philips (chemin)</a>').setIcon(new L.Icon({iconUrl: 'icon/3d.png', iconSize: [tailleIcon, tailleIcon]})));
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // -markers de Lieux d'art-
     // -markers de Points d'eau-
-    // coordonne a ameliorer
+    // coordonne a ameliorer si il y'a le temps !!!
     eauPlace.push(L.marker([49.02018355507679, 1.1496412734206904], {dataName: 'Point d`eau jardin public'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau jardin public</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
     eauPlace.push(L.marker([49.0248608538527, 1.1502845306737144], {dataName: 'Point d`eau jardin cathédrale'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau jardin cathédrale</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
     eauPlace.push(L.marker([49.02342916799356, 1.1556594034558134], {dataName: 'Point d`eau cimetière Saint Louis'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau cimetière Saint Louis</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
@@ -149,9 +149,9 @@ document.addEventListener("DOMContentLoaded", function () {
     toilettesPlace.push(L.marker([49.027333626416365, 1.1477146256569224], {dataName: 'Toilettes public place du marché'}).bindPopup('<a href="#">Toilettes public place du marché</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [tailleIcon, tailleIcon]})));
     toilettesPlace.push(L.marker([49.02701441558723, 1.1514063806067707], {dataName: 'Toilettes public mairie'}).bindPopup('<a href="#">Toilettes public mairie</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [tailleIcon, tailleIcon]})));
 
-    // -markers de Markers personnels-
+    // -markers de Markers personnels- (pour debug c'est ici en gros)
 
-    // Création des groupes de couches à partir des tableaux de marqueurs (ajouter ici si ajout de markers !)
+    // création des groupes de couches à partir des tableaux de marqueurs (ajouter ici si ajout de catégories de markers !)
     var lieux3DLayer = L.layerGroup(lieux3D);
     var artPlaceLayer = L.layerGroup(artPlace);
     var eauPlaceLayer = L.layerGroup(eauPlace);
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var markersPersonnelsLayer = L.layerGroup(markersPersonnels);
     var CheminsPersonnelsLayer = L.layerGroup(CheminsPersonnels);
 
-    // Ajout des groupes de couches à l'objet overlayMaps
+    // ajout des groupes de couches à overlayMaps
     var overlayMaps = {
         "<span style='color: blue'>Chemins</span>": lines,
         "Models 3D de lieux" : lieux3DLayer,
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Markers personnels" : markersPersonnelsLayer,
         "Chemins personnels (geojson)" : CheminsPersonnelsLayer,
     };
-    // Affichage de tout les markers de base
+    // affichage de tout les markers de base
     map.addLayer(lieux3DLayer);
     map.addLayer(artPlaceLayer);
     map.addLayer(eauPlaceLayer);
@@ -204,14 +204,14 @@ document.addEventListener("DOMContentLoaded", function () {
     map.addLayer(markersPersonnelsLayer);
     map.addLayer(CheminsPersonnelsLayer);
 
-    // Ajout du groupe de marqueurs à la carte
+    // ajouts des groupes de marqueurs à la carte
     map.addLayer(markers);
 
-    // Ajout du contrôle des couches à la carte
+    // ajout du contrôle des couches de markers à la carte
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
     //----------------Plugin boxmessage------------------
-    // After you've set up your map and layers, add the modal window by running:
+    // Après avoir config les couches de la carte, ajoutez la fenêtre avec le code la :
     //var contents = [
         //"<h1>Bonjour et bienvenue !</h1>",
         //"<p></p>",
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //var dialog = L.control.dialog({ size: [ 350, 350 ], minSize: [ 100, 100 ], maxSize: [ 500, 500 ], anchor: [ 250, 250 ], position: "topleft", initOpen: true }).setContent(contents).addTo(map);
 
     //----------------Plugin fullscreen------------------
-    // or, add to an existing map:
+    // fullscreen un beu buggé mais pas le temps de faire mieux, si idées, modifier le code!!!
     map.addControl(new L.Control.Fullscreen({
         title: {
             'false': 'Basculer en plein écran',
@@ -248,12 +248,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     map.addControl(drawControl);
 
-     // Ajout des formes dessinées à la couche de dessin
+     // ajout des formes pour dessinées à la couche de dessins
     map.on(L.Draw.Event.CREATED, function (e) {
         drawnItems.addLayer(e.layer);
     });
 
-    // Création d'un contrôle de localisation
+    // création d'un contrôle de localisation
     L.control.locate({
         position: 'topleft',
         strings: {
@@ -262,19 +262,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }).addTo(map);
 
     //----------------Rayon génération pour le deplacement information------------------
-    // Example function to style the isoline polygons when they are returned from the API call
     function styleIsolines(feature) {
-        // NOTE: You can do some conditional styling by reading the properties of the feature parameter passed to the function
         return {
-            color: '#0073d4',
+            color: '#00d1d4',
             opacity: 0.5,
             fillOpacity: 0.2
         };
     }
 
-    // Example function to style the isoline polygons when the user hovers over them
     function highlightIsolines(e) {
-        // NOTE: as shown in the examples on the Leaflet website, e.target = the layer the user is interacting with
         var layer = e.target;
 
         layer.setStyle({
@@ -286,17 +282,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Example function to reset the style of the isoline polygons when the user stops hovering over them
     function resetIsolines(e) {
-        // NOTE: as shown in the examples on the Leaflet website, e.target = the layer the user is interacting with
         var layer = e.target;
 
         reachabilityControl.isolinesGroup.resetStyle(layer);
     }
 
-    // Example function to display information about an isoline in a popup when the user clicks on it
     function clickIsolines(e) {
-        // NOTE: as shown in the examples on the Leaflet website, e.target = the layer the user is interacting with
         var layer = e.target;
         var props = layer.feature.properties;
         var popupContent = 'Mode de déplacement: ' + props['Travel mode'] + '<br />Portée: 0 - ' + props['Range'] + ' ' + props['Range units'] + '<br />Zone: ' + props['Area'] + ' ' + props['Area units'] + '<br />Population: ' + props['Population'];
@@ -304,15 +296,13 @@ document.addEventListener("DOMContentLoaded", function () {
         layer.bindPopup(popupContent).openPopup();
     }
 
-    // Example function to create a custom marker at the origin of the isoline groups
     function isolinesOrigin(latLng, travelMode, rangeType) {
         return L.circleMarker(latLng, { radius: 4, weight: 2, color: '#0073d4', fillColor: '#fff', fillOpacity: 1 });
     }
 
-    // Add the reachability plugin
+    // ajouter le plugin reachability
     var reachabilityControl = L.control.reachability({
-        // add settings here
-        apiKey: '5b3ce3597851110001cf6248ef1e60cbe9394a469697004d368c1915', // PLEASE REGISTER WITH OPENROUTESERVICE FOR YOUR OWN KEY!
+        apiKey: '5b3ce3597851110001cf6248ef1e60cbe9394a469697004d368c1915', // NE PAS CHANGER LA CLE D'API !!!
         styleFn: styleIsolines,
         mouseOverFn: highlightIsolines,
         mouseOutFn: resetIsolines,
@@ -340,21 +330,20 @@ document.addEventListener("DOMContentLoaded", function () {
         travelModeButton4StyleClass: 'fa fa-wheelchair-alt'
     }).addTo(map);
 
-    // Setup error handlers in case there is a problem when calling the API
+    // si ya une erreur :
     map.on('reachability:error', function () {
-        alert('Unfortunately there has been an error calling the API.\nMore details are available in the console.');
+        alert('Malheureusement, une erreur s`est produite lors de l`appel de l`API.\nPlus de détails sont disponibles dans la console pour le nerd.');
     });
 
     map.on('reachability:no_data', function () {
-        alert('Unfortunately no data was received from the API.\n');
+        alert('Malheureusement, aucune donnée n`a été reçue de l`API.\n');
     });
 
     //----------------Plugin sidebar------------------
     var sidebar = L.control.sidebar('sidebar', {position: 'left'}).addTo(map);
 
     //~~~Menu listes markers~~~
-    // Define the markers by category
-    // Define the markers by category with icons
+    // definitions des marqueurs par catégorie à l'aide des icônes
     const markersByCategory = {
         "Models 3D de lieux": { layer: lieux3DLayer, icon: 'icon/3d.png' },
         "Lieux d'art": { layer: artPlaceLayer, icon: 'icon/art.png' },
@@ -373,7 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Chemins personnels (geojson)": { layer: CheminsPersonnelsLayer, icon: 'icon/location_chemin.png' },
     };
   
-    // Create the markers menu
+    // creation du menu de markers
     createMarkerMenu(markersByCategory);
     
     function createMarkerMenu(markersByCategory) {
@@ -399,7 +388,7 @@ document.addEventListener("DOMContentLoaded", function () {
             span.textContent = ` (${nbMarkers})`;
             categoryLink.appendChild(span);
     
-            // Add the list of markers
+            // ajouts de la liste de markers
             const markersList = document.createElement('ul');
             markersList.classList.add('markers-list');
             for (const marker of markersByCategory[category].layer.getLayers()) {
@@ -429,7 +418,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
       }
     
-    // Add an event listener to the form
+    // ajouter d'un événements pour recupérer les infos pour le formulaire
     document.getElementById('addMarkerForm').addEventListener('submit', function(event) {
         event.preventDefault();
     
@@ -437,21 +426,19 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
         }
     
-        // Get the form elements
         var iconSelect = document.getElementById('iconSelect');
         var coordinatesInput = document.getElementById('coordinates');
         var dataNameInput = document.getElementById('dataName');
         var popupTextInput = document.getElementById('popupText');
         var popupUrlInput = document.getElementById('popupUrl');
     
-        // Get the selected values
         var icon = iconSelect.value;
         var coordinates = coordinatesInput.value.split(',');
         var dataName = dataNameInput.value;
         var popupText = popupTextInput.value;
         var popupUrl = popupUrlInput.value;
     
-        // Create a new marker with the selected values
+        // créer un nouveau marqueur avec les valeurs
         var marker = L.marker(coordinates, {
         icon: new L.Icon({
             iconUrl: icon,
@@ -460,44 +447,40 @@ document.addEventListener("DOMContentLoaded", function () {
         dataName: dataName
         });
     
-        // Add a popup to the marker with the selected text and URL
         marker.bindPopup('<a href="' + popupUrl + '">' + popupText + '</a>');
     
-        // Add the marker to the corresponding array based on its category
         markersPersonnels.push(marker);
     
-        // Add the marker to the map
         markers.addLayer(marker);
         markersPersonnelsLayer.addLayer(marker);
     
-        // Update the list of markers in the sidebar
+        // mise à jour de la listes des markers
         createMarkerMenu(markersByCategory);
     
-        // Reset the form
+        // reset du formulaire
         coordinatesInput.value = '';
         dataNameInput.value = '';
         popupTextInput.value = '';
         popupUrlInput.value = '';
     });
     
-    // Sélectionnez l'élément HTML pour la prévisualisation de l'icône
+    // prévisualisation de l'icône
     const iconPreview = document.getElementById("iconPreview");
 
-    // Ajoutez un gestionnaire d'événement pour le changement de sélection de l'élément <select>
     document.getElementById("iconSelect").addEventListener("change", () => {
-    // Récupérez l'URL de l'icône sélectionnée
+    // récupérez l'URL de l'icône sélectionnée
     const iconUrl = document.getElementById("iconSelect").value;
     
-    // Mettez à jour l'arrière-plan de l'élément de prévisualisation avec l'URL de l'icône
+    // mise à jour de l'arrière-plan de l'élément avec l'URL de l'icône
     iconPreview.style.backgroundImage = `url(${iconUrl})`;
     });
 
-    // Déclenchez le gestionnaire d'événement pour afficher l'icône par défaut
+    // afficher l'icône par défaut
     document.getElementById("iconSelect").dispatchEvent(new Event("change"));
 
     //~~~Menu ajouts chemin~~~
     function importGeoJsonFile(file) {
-        clearGeoJson(); // Clear the preview
+        clearGeoJson();
       
         const reader = new FileReader();
         reader.onload = function (event) {
@@ -505,13 +488,14 @@ document.addEventListener("DOMContentLoaded", function () {
           const geoJsonLayer = L.geoJSON(geoJsonData, {
             onEachFeature: function (feature, layer) {
               const layerName = document.getElementById("geoJsonFileNameInput").value;
-              layer.options.dataName = layerName; // Add the name to the layer options
+              layer.options.dataName = layerName;
               CheminsPersonnels.push(layer);
               CheminsPersonnelsLayer.addLayer(layer);
             }
           });
           map.addLayer(geoJsonLayer);
-          createMarkerMenu(markersByCategory); // Update the sidebar
+          // mise à jour de la listes des markers (encore)
+          createMarkerMenu(markersByCategory);
         };
         reader.readAsText(file);
       }
@@ -521,11 +505,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (inputElement.files.length > 0) {
         const file = inputElement.files[0];
         importGeoJsonFile(file);
-        inputElement.value = ""; // Réinitialisez l'entrée de fichier
+        inputElement.value = "";
     }
     });
 
-    // Afficher la prévisualisation du fichier GeoJSON
+    // prévisualisation du fichier GeoJSON
     function displayGeoJsonPreview(geoJson) {
         const previewContainer = document.getElementById('geoJsonPreview');
         previewContainer.innerHTML = '';
@@ -547,7 +531,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Effacer le fichier GeoJSON actuellement chargé
+    // reset le fichier GeoJSON actuel chargé
     function clearGeoJson() {
         document.getElementById('geoJsonFileInput').value = '';
         document.getElementById('geoJsonPreview').innerHTML = '';
@@ -558,7 +542,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Écouter l'événement de changement de fichier GeoJSON
+    // événement changement de fichier GeoJSON
     document.getElementById('geoJsonFileInput').addEventListener('change', function () {
         const file = this.files[0];
         if (file) {
@@ -573,10 +557,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Écouter le bouton d'effacement du fichier GeoJSON
+    // bouton reset du fichier GeoJSON
     document.getElementById('clearGeoJsonButton').addEventListener('click', clearGeoJson);
         
-    // Ajouter un marqueur à la carte de prévisualisation
+    // ajouter un marqueur à la carte de prévisualisation
+    // (sa fonctionne quand le sens du vent le veut, a revoir si possible)
     function addMarkerToMapPreview(lat, lng, title) {
         const mapPreview = document.getElementById('mapPreview')
         if (!mapPreview._leaflet) {
@@ -588,7 +573,7 @@ document.addEventListener("DOMContentLoaded", function () {
         L.marker([lat, lng]).addTo(mapPreview._leaflet).bindPopup(title)
       }
     
-    // Ajouter une couche GeoJSON à la carte de prévisualisation
+    // ajouter une couche GeoJSON à la carte de prévisualisation
     function addGeoJsonToMapPreview(feature) {
         const mapPreview = document.getElementById('mapPreview')
         if (!mapPreview._leaflet) {
@@ -600,7 +585,7 @@ document.addEventListener("DOMContentLoaded", function () {
         L.geoJSON(feature).addTo(mapPreview._leaflet)
       }
     
-    // Écouter l'événement de changement de fichier GeoJSON
+    // événement de changement du fichier GeoJSON
     document.getElementById('geoJsonFileInput').addEventListener('change', function() {
         const file = this.files[0];
         if (file) {
@@ -615,6 +600,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
     
-    // Écouter le bouton d'effacement du fichier GeoJSON
+    // bouton reset du fichier GeoJSON
     document.getElementById('clearGeoJsonButton').addEventListener('click', clearGeoJson);
 });
