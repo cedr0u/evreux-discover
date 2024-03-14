@@ -181,50 +181,45 @@ background-color: #f9f9f9;
     margin: 1em 0;
   }
 
-  /*Menu parametres*/
-
-  #parameters {
-    padding: 10px;
+/*Menu parametre*/
+  
+  #parametres h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
   }
   
-  #parameters-form {
+  #tailleIconForm {
     display: flex;
     flex-direction: column;
   }
   
-  #parameters-form label {
-    margin-bottom: 5px;
-  }
-  
-  #parameters-form input {
+  #tailleIconForm label {
+    font-size: 16px;
+    font-weight: bold;
     margin-bottom: 10px;
   }
   
-  #parameters-form button {
-    align-self: center;
-  }
-
-  /*Menu charger-enregistrer*/
-
-  #map-parameters {
+  #tailleIconForm input[type="number"] {
+    height: 30px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     margin-bottom: 10px;
   }
   
-  #save-parameters {
-    display: block;
-    width: 100%;
+  #tailleIconForm button {
+    height: 40px;
     padding: 10px;
+    font-size: 16px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
   }
   
-  #load-parameters {
-    display: block;
-    width: 100%;
-    padding: 10px;
+  #tailleIconForm button:hover {
+    background-color: #45a049;
   }
