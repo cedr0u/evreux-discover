@@ -73,10 +73,6 @@ Les crédits des icones utilisées dans ce projet sont disponibles dans l'onglet
 - T. Evan : recherches.
 - T. Louis : recherches.
 
-## Remerciements
-
-Nous tenons à remercier M. Betton (professeur d'Histoire) pour ses précieuses informations sur les lieux historiques d'Evreux, ainsi que M. Maillard (professeur de NSI) pour l'inspiration de l'idée d'une carte interactive du lycée. Un grand merci également à E. Victor pour son soutien moral et ses touches d'humour pendant le développement. Enfin, nous remercions Spotify pour les bonnes playlists qui nous ont permis de rester zen pendant le codage.
-
 ## Licence
 
 Ce projet est sous licence MIT. Veuillez consulter le fichier `LICENSE` pour plus d'informations.
