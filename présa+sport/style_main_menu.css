@@ -1,4 +1,4 @@
-/*  penser a clean le repo + bien positionner les image DANS LES 2 MEDIA QUERY */
+
 
 
 /* ce CSS est utilisé pour les écrans ayant une largeure entre 1200px et 1600px (l'écran PC portable par ex) */
@@ -354,8 +354,8 @@ nav > a:hover{
 #image-fct-avancees1{
   position: absolute;
   top: 0%;
-  left: 130%;
-  width: 30%;
+  left: 110%;
+  width: 50%;
 }
 
 #image-fct-avancees2{
@@ -650,11 +650,6 @@ nav > a:hover{
 }
 
 /* zoom des images */
-/* balises à utiliser pour zommer une image : 
-  <div class="zoom d-flex justify-content-center">
-    <div class="p-2 m-2"><img src="image1.jpg"></div>
-  </div>
-*/
 .zoom img {
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -840,8 +835,8 @@ nav > a:hover{
 #image-fct-avancees1{
   position: absolute;
   top: 0%;
-  left: 130%;
-  width: 30%;
+  left: 110%;
+  width: 50%;
 }
 
 #image-fct-avancees2{
