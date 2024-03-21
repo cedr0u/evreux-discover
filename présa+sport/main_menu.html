@@ -6,12 +6,14 @@
     <title>Evreux-map</title>
 
     <link rel="stylesheet" href="style_main_menu.css" />
-    
+    <!-- Bootstrap pour le responsive design -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
-    <script src="app.js"></script>
+
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Structure du slider que j'ai souvent réutilisé -->
     <div class="slider">
         <div class="slider-viewport">
             <div id="img1">
@@ -27,12 +29,15 @@
                 </div>
             </div>
         </div>
+        <!-- Lien qui permettent de changer les images affichées -->
         <div class="slider-nav">
         <a href="#img1"></a>
         <a href="#img2"></a>
         <a href="#img3"></a>
         </div>
     </div>
+
+    <!-- Header fixe  en haut de la page -->
     <nav>
         <a  class="separateur_header"></a><a href="#"><img class="img-header" src="home.gif" alt="Home logo"></a>
         <a href="#">Accueil</a>
@@ -43,7 +48,6 @@
         <a  class="separateur_header"></a>
     </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <div id="texte_bienvenue">
         <p>
             Bienvenue sur Evreux-Discover ! <br> Nous sommes très heureux de vous présenter notre projet, codé afin
@@ -55,6 +59,8 @@
         <div class="p-2 m-2" ><a href="index.html"><img id="bouton-acces-carte" src="pin-map.png" alt="accéder à la carte ! " ></a></div></div>
         <p id="texte-bouton-acces-carte"> Cliquez ici pour accéder à notre carte d'Évreux </p>
         
+
+    <!--  chaque zone de texte de la page correspond à une div dans le code ci dessous  -->
     <div class="corp-page">
        
 

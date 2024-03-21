@@ -1,8 +1,12 @@
+/* J'ai dû utiliser la directive @media screen pour que le site web reste lisible, car les curseurs (slider) ne fonctionnaient pas avec des dimensions en pourcentages.
+J'ai donc dû utiliser cette technique pour rétrécir le site si la taille de l'écran est inférieure à 1600px... */
 
-/* si possible corriger/ trouver un moyen pour éviter de devoir copier-coller tout les slider à chaque fois.... */
+
+/* Honnetement les nom de 'class' ou 'id'  sont assez explicite pour que l'on comprenne vite sur quoi agit le CSS */
 
 
 /* PETITS ECRANS */
+/* Ce CSS est utilisé pour les écrans ayant une largeur entre 1200px et 1600px (par exemple, un écran d'ordinateur portable) */
 
 @media screen and (min-width: 0px) and (max-width: 1600px){ 
   html{
@@ -875,29 +879,6 @@
 }
 
 
-/*  indisponible pour smartphones car media query trop compliqué à mettre en place... */
-@media screen and (min-width: 0px) and (max-width: 600px) {
-  nav, .lieu1, #titre-lieu1, .slider, .slider-viewport, .slider-content, .slider-nav, .slider2, .slider-viewport2, .slider-content2, .slider-nav2, .lieu2, #titre-lieu2, .slider3, .slider-viewport3, .slider-content3, .slider-nav3, .lieu3, #titre-lieu3, .slider4, .slider-viewport4, .slider-content4, .slider-nav4, .lieu4, #titre-lieu4, .slider5, .slider-viewport5, .slider-content5, .slider-nav5 {
-    display: none;
-  }
-  .mobil_website p {
-    display: block;
-    color: white;
-    font-size: xx-large;
-    background-color: white;
-    position: fixed;
-    top: 1%;
-    left: 5%;
-  }
-  html{
-    background-color: black;
-    color: white;
-  }
-  body {
-    color: white;
-    background-color: black;
-  }
-}
 
 
 

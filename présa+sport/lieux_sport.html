@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lieux sportifs d'Evreux</title>
     <link rel="stylesheet" href="style_sport.css" />
+    <!-- Bootstrap pour le responsive design -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
@@ -20,10 +21,19 @@
 </nav>
 
 
+<!--  chaque zone de texte de la page correspond à une div dans le code ci dessous et dans sa div , il à généralement 1 ou 2 slider d'images qui lui sont associé,
+     pour éviter la monotonie d'une page fixe sans possibilité d'interaction.
+  -->
 
 
-<div class="lieu1">
+
+  <!-- structure type que j'ai réutilisé pour absolument chaque lieu de la page, je vais commenter le premier d'entre eux mais ils ont tous le même fonctionnement !   -->
+
+<!-- chaque div porte un numéro au lieu d'un nom pour plus de facilité dans le CSS -->
+  <div class="lieu1"> 
+    <!-- titre du lieu -->
     <div id="titre-lieu1"><h2>Stade Roger Rochard</h2></div>
+    <!-- desciption du lieu -->
     <p>Le Stade Roger Rochard à Évreux est un lieu chargé d'histoire et d'émotion pour les amateurs de football de la région Normandie. Avec une capacité d'environ 8 000 spectateurs, il accueille non seulement les matchs de l'équipe locale d'Évreux, mais aussi d'autres équipes sportives locales.
 
         Portant le nom de Roger Rochard, un célèbre footballeur qui a marqué l'histoire du club local, ce stade est bien plus qu'un simple terrain de jeu. Il est le témoin des moments forts et des rencontres mémorables qui rythment la vie sportive de la région.
@@ -31,6 +41,8 @@
         Situé au cœur de la ville, le Stade Roger Rochard est également un lieu de rassemblement pour les supporters, où l'ambiance chaleureuse et conviviale contribue à créer une expérience inoubliable pour tous ceux qui ont la chance d'assister à un match.</p>
 
             <!-- SLIDER -->
+
+    <!--  slider(s) associés au lieu avec différentes images -->
     <div class="slider">
         <div class="slider-viewport">
             <div id="img1">
@@ -322,7 +334,7 @@
 
 
 
-<div class="mobil_website">
+<div id="mobil_website">
     <p>Bonjour,vous essayez actuellement de consulter notre site d'Evreux Discover sur votre téléphone, mais je suis au regret de vous annoncer que nous ne disposont pas encore de version web pour mobile <br> Du fait de sa complexité à adapter au écran plus petit ! <br><br> Nous vous invitons donc à bien vouloir consulter notre site sur un ordinateur pour un meilleur confort d'Utilisation <br> Veuillez nous excuser pour la gène occasionée <br> <br>Cordialement et à très vite sur notre site <br>L'equipe d'Evreux-Discover
     </p>
 </div>
