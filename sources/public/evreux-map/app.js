@@ -64,6 +64,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var batiments3d = new OSMBuildings(map).load('https://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json');
     map.removeLayer(batiments3d);
 
+    // création de la couche des pistes de skis
+    var pistedeski = new L.tileLayer('https://tiles.opensnowmap.org/pistes/{z}/{x}/{y}.png', {
+        minZoom: 9,
+        maxZoom: 18,
+        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors & ODbL, &copy; <a href="https://www.opensnowmap.org/iframes/data.html">www.opensnowmap.org</a> <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+    });
+
     //----------------Markers/Points sur la carte et données d'informations------------------
     // création d'un groupes de marqueurs
     const markers = L.layerGroup();
@@ -109,23 +116,39 @@ document.addEventListener("DOMContentLoaded", function () {
     lieux3D.push(L.marker([49.02646565678856, 1.1512659263095817], {dataName: '3D Place de la mairie et théatre'}).bindPopup('<a href="gaussian_splatting/mairie/place/index.html">3D Place de la mairie et théatre</a>').setIcon(new L.Icon({iconUrl: 'icon/3d.png', iconSize: [tailleIcon, tailleIcon]})));
 
     // -markers de Lieux d'art-
+    artPlace.push(L.marker([49.02383961632773, 1.1509063835677622], {dataName: 'Musée d`Art, Histoire et Archéologie'}).bindPopup('<a href="https://evreux.fr/sortir/culture/musee-evreux/">Musée d`Art, Histoire et Archéologie</a>').setIcon(new L.Icon({iconUrl: 'icon/art.png', iconSize: [tailleIcon, tailleIcon]})));
+    artPlace.push(L.marker([49.026568389564, 1.150752156553225], {dataName: 'Maison des Arts Solange Baudoux'}).bindPopup('<a href="https://evreux.fr/sortir/culture/musee-evreux/">Maison des Arts Solange Baudoux</a>').setIcon(new L.Icon({iconUrl: 'icon/art.png', iconSize: [tailleIcon, tailleIcon]})));
+    artPlace.push(L.marker([49.022821493236926, 1.151041068970955], {dataName: 'Atelier de Léo Galerie d`art'}).bindPopup('<a href="http://www.leoart.net/">Atelier de Léo Galerie d`art</a>').setIcon(new L.Icon({iconUrl: 'icon/art.png', iconSize: [tailleIcon, tailleIcon]})));
+
     // -markers de Points d'eau-
     // coordonne a ameliorer si il y'a le temps !!!
-    eauPlace.push(L.marker([49.02018355507679, 1.1496412734206904], {dataName: 'Point d`eau jardin public'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau jardin public</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
-    eauPlace.push(L.marker([49.0248608538527, 1.1502845306737144], {dataName: 'Point d`eau jardin cathédrale'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau jardin cathédrale</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
-    eauPlace.push(L.marker([49.02342916799356, 1.1556594034558134], {dataName: 'Point d`eau cimetière Saint Louis'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau cimetière Saint Louis</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
-    eauPlace.push(L.marker([49.011196740813745, 1.1620122156008357], {dataName: 'Point d`eau cimetière Saint André'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau cimetière Saint André</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
-    eauPlace.push(L.marker([49.02086148421744, 1.119101372582145], {dataName: 'Point d`eau cimetière de Navarre'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Cit%C3%A9_Lafayette_(%C3%89vreux)">Point d`eau cimetière de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+    eauPlace.push(L.marker([49.02018355507679, 1.1496412734206904], {dataName: 'Point d`eau jardin public'}).bindPopup('<a href="#">Point d`eau jardin public</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+    eauPlace.push(L.marker([49.0248608538527, 1.1502845306737144], {dataName: 'Point d`eau jardin cathédrale'}).bindPopup('<a href="#">Point d`eau jardin cathédrale</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+    eauPlace.push(L.marker([49.02342916799356, 1.1556594034558134], {dataName: 'Point d`eau cimetière Saint Louis'}).bindPopup('<a href="#">Point d`eau cimetière Saint Louis</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+    eauPlace.push(L.marker([49.011196740813745, 1.1620122156008357], {dataName: 'Point d`eau cimetière Saint André'}).bindPopup('<a href="#">Point d`eau cimetière Saint André</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
+    eauPlace.push(L.marker([49.02086148421744, 1.119101372582145], {dataName: 'Point d`eau cimetière de Navarre'}).bindPopup('<a href="#">Point d`eau cimetière de Navarre</a>').setIcon(new L.Icon({iconUrl: 'icon/eau.png', iconSize: [tailleIcon, tailleIcon]})));
 
     // -markers de Lieux historique-
+    historiquePlace.push(L.marker([49.0243738946071, 1.1509281230059696], {dataName: 'La cathédrale Notre Dame'}).bindPopup('<a href="https://www.patrimoine-histoire.fr/P_Normandie/Evreux/Evreux-Notre-Dame.htm">La cathédrale Notre Dame</a>').setIcon(new L.Icon({iconUrl: 'icon/historique.png', iconSize: [tailleIcon, tailleIcon]})));
+    historiquePlace.push(L.marker([49.02614323969767, 1.1512163002566567], {dataName: 'Pavillon Fleuri'}).bindPopup('<a href="https://evreux.fr/decouvrir-evreux/monuments-evreux/le-pavillon-fleuri/">Pavillon Fleuri</a>').setIcon(new L.Icon({iconUrl: 'icon/historique.png', iconSize: [tailleIcon, tailleIcon]})));
+    historiquePlace.push(L.marker([49.023952848544596, 1.141407319433761], {dataName: 'Église Saint-Taurin'}).bindPopup('<a href="https://www.patrimoine-histoire.fr/P_Normandie/Evreux/Evreux-Saint-Taurin.htm">Pavillon Fleuri</a>').setIcon(new L.Icon({iconUrl: 'icon/historique.png', iconSize: [tailleIcon, tailleIcon]})));
+    historiquePlace.push(L.marker([49.021169658410365, 1.15090276917998], {dataName: 'Couvent des Capucins'}).bindPopup('<a href="https://fr.wikipedia.org/wiki/Couvent_des_Capucins_d%27%C3%89vreux">Couvent des Capucins</a>').setIcon(new L.Icon({iconUrl: 'icon/historique.png', iconSize: [tailleIcon, tailleIcon]})));
+    historiquePlace.push(L.marker([49.02688653363026, 1.1502652163685332], {dataName: 'Le Beffroi – Tour de l’horloge'}).bindPopup('<a href="https://evreux.fr/decouvrir-evreux/monuments-evreux/la-tour-de-lhorloge-ou-le-beffroi/">Le Beffroi – Tour de l’horloge</a>').setIcon(new L.Icon({iconUrl: 'icon/historique.png', iconSize: [tailleIcon, tailleIcon]})));
+
     // -markers de Lieux d'information-
+    infoPlace.push(L.marker([49.02373449920583, 1.1493495595137675], {dataName: 'Office du tourisme evreux'}).bindPopup('<a href="http://www.lecomptoirdesloisirs-evreux.fr/">Office du tourisme evreux</a>').setIcon(new L.Icon({iconUrl: 'icon/info.png', iconSize: [tailleIcon, tailleIcon]})));
+
     // -markers de Jardin-
-    jardinPlace.push(L.marker([49.020153916417975, 1.1506960668954485], {dataName: 'Jardin botanique'}).bindPopup('<a href="https://evreux.fr/">Jardin botanique</a>').setIcon(new L.Icon({iconUrl: 'icon/jardin.png', iconSize: [tailleIcon, tailleIcon]})));
+    jardinPlace.push(L.marker([49.020153916417975, 1.1506960668954485], {dataName: 'Jardin botanique'}).bindPopup('<a href="https://evreux.fr/sortir/parcs-jardins-et-balades/parc-jardin-serre/">Jardin botanique</a>').setIcon(new L.Icon({iconUrl: 'icon/jardin.png', iconSize: [tailleIcon, tailleIcon]})));
     jardinPlace.push(L.marker([49.029349452451, 1.169738748304181], {dataName: 'Jardin de Netreville'}).bindPopup('<a href="https://evreux.fr/">Jardin de Netreville</a>').setIcon(new L.Icon({iconUrl: 'icon/jardin.png', iconSize: [tailleIcon, tailleIcon]})));
     jardinPlace.push(L.marker([49.00479770199866, 1.150179333701478], {dataName: 'Jardin Secret de Pan'}).bindPopup('<a href="https://www.lejardinsecretdepan.fr/">Jardin Secret de Pan</a>').setIcon(new L.Icon({iconUrl: 'icon/jardin.png', iconSize: [tailleIcon, tailleIcon]})));
     jardinPlace.push(L.marker([49.02976854096607, 1.1335508803899024], {dataName: 'Jardin des coteaux de Saint-Michel de F.Simonaire'}).bindPopup('<a href="https://www.lejardinsecretdepan.fr/">Jardin des coteaux de Saint-Michel de F.Simonaire</a>').setIcon(new L.Icon({iconUrl: 'icon/jardin.png', iconSize: [tailleIcon, tailleIcon]})));
+    jardinPlace.push(L.marker([49.02025863610502, 1.1495230993428647], {dataName: 'Serre jardin botanique'}).bindPopup('<a href="https://evreux.fr/sortir/parcs-jardins-et-balades/parc-jardin-serre/">Serre jardin botanique</a>').setIcon(new L.Icon({iconUrl: 'icon/jardin.png', iconSize: [tailleIcon, tailleIcon]})));
 
     // -markers de Point de vue-
+    jumellesPlace.push(L.marker([49.031894931458325, 1.1473175585482334], {dataName: 'Vue panoramique d`évreux'}).bindPopup('<a href="#">Vue panoramique d`évreux</a>').setIcon(new L.Icon({iconUrl: 'icon/jumelles.png', iconSize: [tailleIcon, tailleIcon]})));
+    jumellesPlace.push(L.marker([49.026334675675955, 1.162360361127273], {dataName: 'Vue panoramique d`évreux'}).bindPopup('<a href="#">Vue panoramique d`évreux</a>').setIcon(new L.Icon({iconUrl: 'icon/jumelles.png', iconSize: [tailleIcon, tailleIcon]})));
+
     // -markers de Mairie-
     mairiePlace.push(L.marker([49.02701441558723, 1.1514063806067707], {dataName: 'Mairie d\'Évreux'}).bindPopup('<a href="https://evreux.fr/">Mairie d\'Évreux</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [tailleIcon, tailleIcon]})));
     mairiePlace.push(L.marker([49.02663557689257, 1.1717314547964557], {dataName: 'Mairie annexe de Nétreville'}).bindPopup('<a href="https://evreux.fr/la-mairie/services/mairies-annexes/">Mairie annexe de Nétreville</a>').setIcon(new L.Icon({iconUrl: 'icon/mairie.png', iconSize: [tailleIcon, tailleIcon]})));
@@ -149,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sentierPlace.push(L.geoJSON.ajax("geojson/Voie_verte_Évreux.geojson", {dataName: '[chemin] Voie verte'}));
 
     // -markers de Sports/J.O 2024-
-    sportPlace.push(L.marker([49.017185832405126, 1.126595959278061], {dataName: 'Mouv\'roc - sport plein air'}).bindPopup('<a href="#">Mouv\'roc - sport plein air</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
+    sportPlace.push(L.marker([49.017185832405126, 1.126595959278061], {dataName: 'Mouv`roc - sport plein air'}).bindPopup('<a href="#">Mouv\'roc - sport plein air</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
     sportPlace.push(L.marker([49.02709014691586, 1.1703939008949693], {dataName: 'Parc Street workout - musculation en extérieur'}).bindPopup('<a href="#">Parc Street workout - musculation en extérieur</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
     sportPlace.push(L.marker([49.03005944260493, 1.1803060224204367], {dataName: 'Terrain de football'}).bindPopup('<a href="#">Terrain de football</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
     sportPlace.push(L.marker([49.01683085610241, 1.1167821390512076], {dataName: 'Terrain de football des Marronniers'}).bindPopup('<a href="#">Terrain de football des Marronniers</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
@@ -178,7 +201,13 @@ document.addEventListener("DOMContentLoaded", function () {
     sportPlace.push(L.marker([49.0221629331427, 1.1273308731985334], {dataName: 'Piscine Jean Bouin'}).bindPopup('<a href="#">Piscine Jean Bouin</a>').setIcon(new L.Icon({iconUrl: 'icon/sport.png', iconSize: [tailleIcon, tailleIcon]})));
     
     // -markers de Lieux culturels-
-    //serre du jardin botanique
+    theatrePlace.push(L.marker([49.022308255580334, 1.1377813841825224], {dataName: 'Le CADRAN - Palais des Congrès (Le Tangram)'}).bindPopup('<a href="http://www.letangram.com/">Le CADRAN - Palais des Congrès (Le Tangram)</a>').setIcon(new L.Icon({iconUrl: 'icon/theatre.png', iconSize: [tailleIcon, tailleIcon]})));
+    theatrePlace.push(L.marker([49.026476293853854, 1.1517621606032578], {dataName: 'THÉÂTRE LEGENDRE (Le Tangram)'}).bindPopup('<a href="http://www.letangram.com/">THÉÂTRE LEGENDRE (Le Tangram)</a>').setIcon(new L.Icon({iconUrl: 'icon/theatre.png', iconSize: [tailleIcon, tailleIcon]})));
+    theatrePlace.push(L.marker([49.02641222682504, 1.1519432240664265], {dataName: 'Médiathèque Rolland-Plaisance'}).bindPopup('<a href="https://mediatheques.evreux.fr/">Médiathèque Rolland-Plaisance</a>').setIcon(new L.Icon({iconUrl: 'icon/theatre.png', iconSize: [tailleIcon, tailleIcon]})));
+    theatrePlace.push(L.marker([49.021535874162566, 1.1383081869871958], {dataName: 'Le KUBB - Salle de concert (Le Tangram)'}).bindPopup('<a href="http://www.letangram.com/">Le KUBB - Salle de concert (Le Tangram)</a>').setIcon(new L.Icon({iconUrl: 'icon/theatre.png', iconSize: [tailleIcon, tailleIcon]})));
+    theatrePlace.push(L.marker([49.02946317293693, 1.1465665287297129], {dataName: 'Le Manège de Tilly spectacle'}).bindPopup('<a href="http://www.lemanegedetilly.fr/">Le Manège de Tilly spectacle</a>').setIcon(new L.Icon({iconUrl: 'icon/theatre.png', iconSize: [tailleIcon, tailleIcon]})));
+    theatrePlace.push(L.marker([49.02120801387042, 1.1511401792028326], {dataName: 'Conservatoire'}).bindPopup('<a href="https://evreuxportesdenormandie.fr/471-le-conservatoire-a-rayonnement-departemental.htm">Conservatoire</a>').setIcon(new L.Icon({iconUrl: 'icon/theatre.png', iconSize: [tailleIcon, tailleIcon]})));
+
     // -markers de Toilettes publiques-
     toilettesPlace.push(L.marker([49.020380367794814, 1.1493014814471363], {dataName: 'Toilettes public jardin public'}).bindPopup('<a href="#">Toilettes public jardin public</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [tailleIcon, tailleIcon]})));
     toilettesPlace.push(L.marker([49.0249926407912, 1.15051691430553], {dataName: 'Toilettes public jardin cathédrale'}).bindPopup('<a href="#">Toilettes public jardin cathédrale</a>').setIcon(new L.Icon({iconUrl: 'icon/toilettes.png', iconSize: [tailleIcon, tailleIcon]})));
@@ -206,11 +235,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ajout des groupes de couches à overlayMaps
     var overlayMaps = {
-        "<span style='color: olive'>Batiments 3d</span>": batiments3d,
+        "<span style='color: DarkSlateGray'>Batiments 3d</span>": batiments3d,
         "<span style='color: sienna'>Chemins</span>": lines,
         "<span style='color: olive'>Toponymes</span>": toponymes,
-        "<span style='color: gold'>Températures</span>": temperature,
+        "<span style='color: LightGray'>Piste de ski</span>": pistedeski,
         "<span style='color: rosyBrown'>Neige</span>": neige,
+        "<span style='color: gold'>Températures</span>": temperature,
         "Models 3D de lieux" : lieux3DLayer,
         "Lieux d'art" : artPlaceLayer,
         "Points d'eau" : eauPlaceLayer,
