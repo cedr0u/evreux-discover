@@ -10,9 +10,9 @@
   "author": "cedric et thomas",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.2",
+    "body-parser": "^1.20.3",
     "ejs": "^3.1.9",
-    "express": "^4.19.2",
+    "express": "^4.21.1",
     "fs": "^0.0.1-security",
     "leaflet-dialog": "^1.0.5",
     "leaflet-draw-locales": "^1.2.3",
